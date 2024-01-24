@@ -2,6 +2,8 @@
 
 {composer} is an R package which contains a Shiny app for building and analysing composite indicators.
 
+:blue_book: Full documentation for the package and app is available at https://finddx.github.io/composer/
+
 # About
 
 Composite indicators are aggregations of multiple indicators into a single composite score. They are typically used to measure multidimensional socio-economic concepts
