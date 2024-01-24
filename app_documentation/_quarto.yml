@@ -1,0 +1,40 @@
+project:
+  type: book
+  output-dir: ../docs
+
+book:
+  title: "Building composite indicators with {composer}"
+  author: "William Becker"
+  date: "01/24/2024"
+  chapters:
+    - index.qmd
+    - overview.qmd
+    - app_layout.qmd
+    - part: "Build"
+      chapters:
+        - data_input.qmd
+        - screening.qmd
+        - imputation.qmd
+        - outliers.qmd
+        - normalisation.qmd
+        - compose.qmd
+    - part: "Analyse"
+      chapters:
+        - map_bar.qmd
+        - bubble.qmd
+        - stats.qmd
+        - correlations.qmd
+        - profiles.qmd
+    - part: "Adjust"
+      chapters:
+        - reweighting.qmd
+        - remove_elements.qmd
+        - sensitivity.qmd
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+

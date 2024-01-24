@@ -1,0 +1,37 @@
+# Reweighting {#sec-reweighting}
+
+Weights are used at all levels of the composite indicator to aggregate indicators and aggregates up to the levels above. For example, denoting a group of indicators as $x_i \in \{x_1, x_2, ... , x_d \}$, the weighted arithmetic mean is calculated as:
+
+$$ y = \frac{1}{\sum_{i=1}^d w_i} \sum_{i=1}^d x_iw_i $$
+
+where the $w_i$ are the weights. Similarly, the weighted geometric mean has its weights as exponents:
+
+$$ y = \left( \prod_{i=1}^d x_i^{w_i} \right)^{1 / \sum_{i=1}^d w_i} $$
+
+The Reweighting tab allows you to adjust the weights at any level of the composite indicator, compare with the current results, and to save as new weight sets. This tab can be viewed as a "sandbox" where you can try new weighting combinations and view the preliminary results. To actually use the new weights you save them as a weight set and then select them in the "Compose" tab. This will now be explained in more detail.
+
+Begin by selecting the level at which you wish to adjust the weights using the "Select framework level to adjust weights" input. Here, as usual, level 1 is the indicator level and so on up to the index level. By default, the level will be selected as one level down from the index.
+
+![](figs/reweighting_1.png){width="50%"}
+
+When the level is selected, in the "Weights" box to the right you will see slider inputs for the indicators/aggregates in that level. In this example, we are seeing the weights for the three aggregates below the index (indicator codes are used as labels):
+
+![](figs/reweighting_2.png){width="40%"}
+
+These sliders can be used to adjust the weights to the desired values. Remember that weights are relative and will be rescaled to sum to 1 within each aggregation group.
+
+To see the results with the selected weights, click the "Recalculate" button in the side panel: this will calculate the new results at the index level and display in a comparison table:
+
+![](figs/reweighting_3.png){width="100%"}
+
+This table will show the ranks of the units using the new weights, compared to the ranks using the weight-set selected in the "Compose" tab, along with the rank differences and absolute rank differences, which can be sorted using the table headers. It may be of interest, for example, to look for the units with the greatest absolute rank change as a result of the new weights.
+
+Importantly, the reweighted results generated in this tab are generated in parallel to the main results (which come from the "Compose" tab) for the purposes of experimentation, and exist only within the Reweighting tab. To actually apply these new weights to your composite indicator you must do the following:
+
+1. Go to the "Save weights" box in the side panel, enter a name for your new set of weights, and click "Save". NOTE: this will only work if you have clicked "Recalculate" first.
+2. Go back to the "Compose" tab, select the new weight set in the "Weight set" drop-down, and click "Run".
+
+Having done this, your new weight set is now "active" in the rest of the app and the new results will be reflected in all the visualisation tabs and so on.
+
+There is no limit on the number of weight sets that you can create, but it is important to realise that the composite indicator results are generated from the Compose tab, whereas the Reweighting tab is a sandbox for creating new weight sets.
+

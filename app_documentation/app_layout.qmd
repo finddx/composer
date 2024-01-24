@@ -1,0 +1,13 @@
+# App layout {#sec-app_layout}
+
+The app aims for a user-friendly layout based on a main window, a side panel and a tab ribbon.
+
+![App layout](figs/app_layout.png){width=100%}
+
+The tab ribbon allows you to navigate between one tab and the next in the app. More or less, you should start at the leftmost tab (Overview, which allows you to input data), and work one tab at a time to the right.
+
+In each tab, the side panel contains the controls. These may be options to apply data operations, or settings to control the visualisations.
+
+The main window contains the outputs of that tab - these may be plots, tables, maps and text.
+
+Finally, at the bottom of the app there are the options to export the data, to save the session, and the in-app documentation.

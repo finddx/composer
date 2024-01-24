@@ -1,0 +1,10 @@
+^renv$
+^renv\.lock$
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^app\.R$
+^docs$
+shiny_bookmarks
+app_documentation
+rsconnect

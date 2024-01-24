@@ -1,0 +1,42 @@
+Package: composer
+Title: An app for building and analysing composite indicators
+Version: 0.1
+Authors@R: c(
+    person("William", "Becker", email = "william.becker@bluefoxdata.eu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6467-4472")),
+    person("Ben", "Ubah", email = "ubah.ben22@gmail.com", role = c("aut", "cre")),
+    person("Anna", "Mantsoki", email = "anna.mantsoki@finddx.org", role = c("aut", "cre"))
+           )
+Description: A Shiny app which allows users to build their own composite indicators by entering their data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+    R (>= 4.1.0)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    iCOINr (>= 0.2.8),
+    readxl,
+    rlang,
+    stats,
+    tools,
+    dplyr,
+    glue,
+    readr,
+    COINr (>= 1.1.6),
+    ggplot2,
+    plotly,
+    shiny,
+    shinyjs,
+    echarts4r,
+    shinyWidgets,
+    DT,
+    htmltools,
+    htmlwidgets,
+    rmarkdown,
+    grDevices,
+    bslib
+Remotes: 
+    bluefoxr/COINr,
+    bluefoxr/iCOINr
+LazyData: true

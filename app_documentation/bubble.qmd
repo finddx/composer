@@ -1,0 +1,19 @@
+# Bubble chart {#sec-bubble}
+
+The bubble chart, which is found in the "Bubble" sub-tab of the "Explore" tab group, is a powerful tool to compare the relationships between indicators and aggregates.
+
+*More details explaining the purpose*
+
+The sidebar gives various controls. The first four dropdown menus control which indicators or aggregates to display on the plot.
+
+![](figs/bubble_1.png){width=40%}
+
+The bubble chart is an "enhanced" scatter plot. You can select any indicator or aggregate to plot on the x and y axes, but also each point can be sized and coloured by third and fourth variables. After selecting the variables of interest, click the "Run" button.
+
+*Anna I leave to you to pad this out?*
+
+![](figs/bubble_2.png){width=40%}
+
+The other controls in the sidebar allow further adjustments. The two "Threshold" boxes can be used to draw horizontal and vertical lines on the plot which can represent thresholds.
+
+It is also possible to filter units based on grouping variables (see again @sec-datainput), and to highlight selected countries.

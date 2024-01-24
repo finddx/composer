@@ -1,0 +1,23 @@
+# Remove elements {#sec-remove_elements}
+
+The Remove Elements tab allows to investigate the impact of removing indicators and aggregates from the framework. It addresses the question: how much would the results change if indicator X was not present? This type of analysis can be useful in identifying indicators that could potentially be removed, in order to streamline your indicator framework.
+
+The inputs for this tab are very straightforward: you simply select the level at which you want to perform the analysis and click "Run". This will generate a bar chart which looks something like this:
+
+![](figs/remove_elements_1.png){width="100%"}
+
+On clicking "Run", the app performs the following analysis, for each indicator (presuming we are working at level 1, the indicator level):
+
+1. Remove the indicator from the framework
+2. Recalculate the results following the methodology specified so far in the app
+3. Compare the results with the indicator excluded, with the results with the indicator included
+
+In the first step, the indicator is completely removed from the framework and excluded from all data operations. This is subtley different from setting its weight to zero, although typically very similar. In the second step, the app recalculates the results up to the index.
+
+In the third step, the new index ranks are compared with the index ranks with all indicators included. Specifically, the difference is calculated as the mean absolute rank change across all units. This gives a single metric of the difference between the two sets of results.
+
+This is repeated for every indicator, with replacement (i.e. only one indicator at a time is excluded, but this is repeated for all indicators). Of course, if the level is set at 2 or higher, the process is identical but instead entire aggregate groups are excluded one at a time.
+
+Now returning to the bar chart: it gives a graphical illustration of the impact of removing each indicator/aggregate. Higher bars indicate that if you were to remove that indicator/aggregate, the results would change more. In the example above, for instance, "income_fit" is clearly an important indicator which, if removed, would significantly change the index rankings. On the other hand, "ict_indiv_using_internet_females" could be removed from the framework without impacting the results very much. Of course, indicators may also have value in other ways, for example in terms of communication, concept, and being of standalone interest.
+
+As with the Reweighting tab, this tab is very much a "what if" study, and the analysis here has no impact on the results elsewhere. To actually remove indicators or aggregates from the framework in the final results, you will have to go back to your input Excel sheet and manually remove the indicators. The app does not currently support doing this in-app.

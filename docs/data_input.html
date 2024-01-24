@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Building composite indicators with {composer} - 4&nbsp; Data input</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./screening.html" rel="next">
+<link href="./app_layout.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_input.html">Build</a></li><li class="breadcrumb-item"><a href="./data_input.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data input</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Building composite indicators with {composer}</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./app_layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">App layout</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Build</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_input.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data input</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./screening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Unit screening</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./imputation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Imputation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outliers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Outlier treatment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./normalisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Compose</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Analyse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map_bar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Maps and bar charts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bubble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bubble chart</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Indicator statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./profiles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Unit profiles</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Adjust</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reweighting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Reweighting</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./remove_elements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Remove elements</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sensitivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sensitivity analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#template-and-example" id="toc-template-and-example" class="nav-link active" data-scroll-target="#template-and-example"><span class="header-section-number">4.1</span> Template and example</a></li>
+  <li><a href="#idata-table" id="toc-idata-table" class="nav-link" data-scroll-target="#idata-table"><span class="header-section-number">4.2</span> iData table</a>
+  <ul class="collapse">
+  <li><a href="#required-columns" id="toc-required-columns" class="nav-link" data-scroll-target="#required-columns"><span class="header-section-number">4.2.1</span> Required columns</a></li>
+  <li><a href="#optional-columns" id="toc-optional-columns" class="nav-link" data-scroll-target="#optional-columns"><span class="header-section-number">4.2.2</span> Optional columns</a></li>
+  </ul></li>
+  <li><a href="#imeta-table" id="toc-imeta-table" class="nav-link" data-scroll-target="#imeta-table"><span class="header-section-number">4.3</span> iMeta table</a></li>
+  <li><a href="#upload" id="toc-upload" class="nav-link" data-scroll-target="#upload"><span class="header-section-number">4.4</span> Upload</a>
+  <ul class="collapse">
+  <li><a href="#successful" id="toc-successful" class="nav-link" data-scroll-target="#successful"><span class="header-section-number">4.4.1</span> Successful</a></li>
+  <li><a href="#unsuccessful" id="toc-unsuccessful" class="nav-link" data-scroll-target="#unsuccessful"><span class="header-section-number">4.4.2</span> Unsuccessful</a></li>
+  </ul></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">4.5</span> What’s next</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-datainput" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data input</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Correctly inputting your data into the {composer} app requires a little care. It is the most difficult step in using the app, but once the data is correctly loaded, things get a lot easier.</p>
+<p>The indicator data, as well as the index structure, weights, indicator directions and other metadata are input into the app via an Excel spreadsheet which must follow strict formatting requirements. The spreadsheet must have two tabs: one called “iData” which is the table of indicator data, and “iMeta” which is the table of metadata, including the index structure. Here we carefully walk through the requirements for building these two tables.</p>
+<section id="template-and-example" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="template-and-example"><span class="header-section-number">4.1</span> Template and example</h2>
+<p>Before explaining the specific requirements of the input spreadsheet, it is definitely worth downloading both the input template and the example input data, which are both available at the links in the “Overview” tab.</p>
+<p><img src="figs/data_input_1.png" class="img-fluid" style="width:50.0%"></p>
+<p>We recommend that you carefully read the instructions here, and compare to the example data set, which should give a good understanding of how to correctly format your input.</p>
+</section>
+<section id="idata-table" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="idata-table"><span class="header-section-number">4.2</span> iData table</h2>
+<p>The first of the two tables to input into the app is called “iData”, which is short for “indicator data”. This table is unsurprisingly where you enter the data for your indicators, but also the codes and names of each indicator.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/data_input_2.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Extract of iData example table</figcaption>
+</figure>
+</div>
+<p>The figure above shows the first few rows and columns of the example data. Notice first of all that each <strong>row</strong> is a unit (countries here), and each <strong>column</strong> describes things about each unit, such as its code, name, and also its values for each indicator. Let’s now go through each column in turn - we divide into required and optional columns.</p>
+<p><em>Anna: in your example data ideally the iCodes should be shorter, also because they cause issues on the framework plot. Can we possibly shorten them? Also: you have a denominator column but currently the app doesn’t support denomination. For the purposes of the example, could we either remove it or make it into Type = “Other” in iMeta?</em></p>
+<section id="required-columns" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="required-columns"><span class="header-section-number">4.2.1</span> Required columns</h3>
+<p>The <strong>uCode</strong> column should contain a short alphanumeric code for each unit. For example, if units are countries it is advisable to use <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">ISO alpha-3 codes</a> (as in the example data). Otherwise, some requirements for these codes:</p>
+<ul>
+<li>Unique (not the same as other iCodes or uCodes</li>
+<li>No spaces</li>
+<li>Must start with a letter, but can contain numbers otherwise</li>
+<li>Avoid special characters, underscores are OK though</li>
+<li>Ideally should be short (e.g.&nbsp;&lt;10 characters) but descriptive</li>
+</ul>
+<p>These requirements are necessary because uCodes are used by the app to reference each unit in calculations.</p>
+<p>The <strong>uName</strong> column gives the full name of the unit (e.g.&nbsp;the country name). Here, there are no specific restrictions other than that you must specify a name for each unit, i.e.&nbsp;don’t leave any blanks.</p>
+<p>Both the uCode and uName columns must be present - do not remove them or change their names.</p>
+</section>
+<section id="optional-columns" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="optional-columns"><span class="header-section-number">4.2.2</span> Optional columns</h3>
+<p>The uCode and uName columns are the only columns that must be present - all other columns are data columns or group columns which are named according to your data. The purpose of each column will be specified later in the iMeta table. Keep in mind that at least one indicator column needs to be present, and ideally several, to make a useful composite indicator.</p>
+<p>In the example data, columns G onwards are <strong>indicator columns</strong>. The first row of each column is the indicator code, which is cross-referenced in the iMeta table (see next section). These codes must be unique and follow rules similar to the uCodes. There are no restrictions on the number of indicator columns, but the entries in each column must be <em>numeric</em> (no text), and any missing data should be left as a blank (don’t write “n/a”, for example).</p>
+<p>Again following the example above, columns C, D and E are <strong>group columns</strong>, which specify unit groupings, such as continents and income groups in the country context. Grouping variables are not used as indicators, i.e.&nbsp;they are not used in the calculation of the index, but can be optionally used in plots, as well as missing data imputation. Notice that unlike indicator columns, the group columns <em>can</em> contain text. There are no specific limitations on the numbers of groups within each grouping variable, but consider that having a very large number of groups may not be very useful in sensibly dividing units. You can have as many grouping columns as you need, but also group columns are <em>completely optional</em>.</p>
+<p>It is also possible to include additional columns that are are simply passed through, i.e.&nbsp;they are not used as indicators or as groups. These columns must be tagged as “Other” in the iMeta table (see next section).</p>
+<p>In summary, the iData table should provide, for each unit, its code, name, and its values for each indicator and (optionally) grouping variable.</p>
+</section>
+</section>
+<section id="imeta-table" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="imeta-table"><span class="header-section-number">4.3</span> iMeta table</h2>
+<p>The iMeta table provides the metadata for each indicator, and also specifies the structure of the index. It should contain a row for each column in iData (except the uCode and uName columns) AND also rows for each aggregate level. It is a little more complex than the iData table.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/data_input_3.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">iMeta example table</figcaption>
+</figure>
+</div>
+<p>All the columns shown in the example iMeta table are required.</p>
+<p>Beginning with the <strong>iCode column</strong>, this is required to contain all the column names in the iData table (inclduing groups, etc.), as well as any aggregates that are created by aggregating indicators. The point of the iMeta table is to give further details about each variable. Therefore the codes here need to be exactly the same as the iData column names (excluding uName and uCode) - remember that codes are case-sensitive!</p>
+<p>Notice that the first rows of the table also have “1” in the <strong>Level column</strong> and “Indicator” in the <strong>Type column</strong>. This tells the app that they are indicators, and at level 1 (the indicator level). From row 17 downwards there are some rows with level = 2: these are “aggregates”, i.e.&nbsp;they are variables (actually composite indicators themselves) that are created by aggregating indicators together. At level 2, therefore, there should be one iCode for each group of indicators to be aggregated. Finally, at Level 3, in this case is the index: there is only one iCode at this level, and it is created by aggregating everything in Level 2 together.</p>
+<p>The <strong>Parent column</strong> defines <em>which</em> indicators fall into which groups: specifically it specifies which group each indicator aggregate belongs to in the level immediately above it. For example, the parent of the mortality rate indicator is “epidemiological_impact” (an aggregate at level 2). The parent of “epidemiological_impact” is “cxca_prioritization_index” (level 3), and the parent of “cxca_prioritization_index” is left blank because it is the top level. This allows a framework to be defined of any number of levels.</p>
+<p>Keep in mind that every indicator or aggregate must have a parent, unless it is at the top level. You cannot define a parent that is more than one level above - if needed, define intermediate aggregates with only one indicator/aggregate.</p>
+<p>The other columns are more straightforward. The <strong>iName column</strong> is analogous to the uName column in iData, and gives the full name of the indicator. The <strong>Direction column</strong> specifies the conceptual direction of the indicator: if higher values of the indicator should imply higher index scores, the direction should be “1”. Otherwise if higher indicator values should imply <em>lower</em> index scores, the direction should be “-1”. In an index measuring environmental sustainability, for example, % renewable energy would have direction 1, and CO2 emissions per capita would have direcion -1.</p>
+<p>The <strong>Weight column</strong> gives the initial weight assigned to each indicator and aggregate. Weights are used when aggregating groups of indicators and aggregates to calculate aggregate scores. Importantly, <em>weights are relative within aggregation groups</em> - they will be rescaled by the app to sum to 1. This means that for three indicators in one aggregation group, setting the weights as (1, 1, 1) is the same as setting them to (2, 2, 2) - in either case, the indicators will each be weighted as 1/3.</p>
+<p>We now return to the <strong>Type column</strong>. Here, each row must either be assigned a type of “Indicator” (anything at level 1), “Aggregate” (any aggregates created from aggregating indicators - level 2 upwards), or else “Group” or “Other”. The last two types are used to label columns in iData that are not part of the index. Type = “Group” is used to point to grouping variables, as described in the previous section. Type = “Other” is for any variables to simply pass through and ignore. Notice that for these last two types the Direction, Weight, Parent and Level columns should be left blank.</p>
+<p>It is important to carefully cross-check between the iData and iMeta tables, making sure that all columns in iData are defined in iMeta (except uCode and uName), and the formatting rules are carefully followed.</p>
+</section>
+<section id="upload" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="upload"><span class="header-section-number">4.4</span> Upload</h2>
+<p>With your input data correctly prepared, you can now upload it to the app. On the “Overview tab”, select the “Upload data” tab in the sidebar and browse to the location of your input data on your computer by clicking the “Browse” button. Having selected the file, click the “Load data” button.</p>
+<p><img src="figs/data_input_4.png" class="img-fluid" style="width:50.0%"></p>
+<p>At this point, either the data upload will be successful or not. Here’s what to do.</p>
+<section id="successful" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="successful"><span class="header-section-number">4.4.1</span> Successful</h3>
+<p>If the data upload is successful, the app should output some information about your data to relay what it has understood. In the main window you should see a box with some text output summarising your input. This displays the number of units, indicators, groups, and details about the index structure. Check that this output is what you expect.</p>
+<p><img src="figs/data_input_5.png" class="img-fluid" style="width:40.0%"></p>
+<p>Next to the text summary is a sunburst plot of the framework you have specified, which should look something like this:</p>
+<p><img src="figs/data_input_6.png" class="img-fluid" style="width:60.0%"></p>
+<p>This is a plot of the index framework as specified in your iMeta table. Hovering over segments will show indicator names, and clicking on segments will zoom in on lower levels. Double click to reset the plot. Like most plots in the app, a snapshot of the plot can be downloaded as a png file by clicking the small camera icon in the upper right of the plot.</p>
+<p>The framework plot also shows the effective weight of each indicator and aggregate in the framework, as a result of the weights specified in iMeta <em>and</em> the index structure. Notice that in our example there are three equally-weighted dimensions: “readiness”, “strategic_fit” and “epidemiological_impact”, but these have different numbers of indicators within them. As a result, each indicator in “readiness” is weighted less individually than each in “epidemiological_impact”. This is important to consider in defining the index structure.</p>
+<p>On uploading the data there will also be a pop-up notification which reports whether your data has been recognised as country data or not. Data is recognised as country data if the uCodes correspond to ISO alpha-3 codes, as mentioned previously. This enables the maps later in the app. If you have made any mistakes with your ISO codes the app will try to point to them, or if no ISO codes are present it will assume you are not analysing country data and disable the mapping feature.</p>
+<p>From here, if you are happy with the details reported by the app, you can move to the next tab.</p>
+</section>
+<section id="unsuccessful" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="unsuccessful"><span class="header-section-number">4.4.2</span> Unsuccessful</h3>
+<p>It is not unlikely that you will have made a mistake the first time that you try to upload your data. Don’t worry! The input is a little complex and it is easy to make errors.</p>
+<p><em>NOTE: this section needs completing because at the moment the app crashes if the input is wrong. Need to improve app here and then finish this</em></p>
+<p>Here are some common problems:</p>
+<ul>
+<li>Mismatch between iMeta and iData tables: remember that codes are <em>case-sensitive</em>, and cross check very carefully to ensure that all columns names from iData are in iMeta (excluding uCode and uName), and all iCodes <em>except</em> those with Type = “Aggregate” are columns in iData.</li>
+<li>Non-numeric data: make sure each column of data is actually formatted as numeric. Even it looks like a number, Excel may have interpreted it as text. In Excel, a cell formatted as a number will be right-aligned, whereas text is left-aligned (see below).</li>
+</ul>
+<p><img src="figs/data_input_7.png" class="img-fluid" style="width:30.0%"></p>
+<ul>
+<li>Aggregates with no “children”: avoid specifying an aggregate in iMeta which is not the parent of at least one indicator or aggregate.</li>
+<li>Altering spreadsheet: try above all to avoid modifying the spreadsheet in unexpected ways. For example, do not add extra or numbers in cells near the tables. Do not change the names of required columns, and don’t move tables, or rename tabs. You CAN add extra tabs to the spreadsheet with other calculations as the app will only look for the iData and iMeta tabs.</li>
+</ul>
+</section>
+</section>
+<section id="whats-next" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">4.5</span> What’s next</h2>
+<p>From here, things get a lot smoother: the app should now work with fairly minimal interventions on your part. Move to the “Data operation” tab group to begin processing your data!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./app_layout.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">App layout</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./screening.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Unit screening</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

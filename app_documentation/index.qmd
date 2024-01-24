@@ -1,0 +1,60 @@
+# Welcome
+
+::: callout-warning
+This documentation is being developed and updated. Screenshots may show older versions of the app and there will be gaps in the text.
+:::
+
+Welcome to the documentation for the {composer} app. The {composer} app provides an easy interface for building composite indicators using any data set. Users can visualise and explore results in depth, and download figures and reports.
+
+*Add here...*
+
+*Add FIND acknowledgement*
+
+The rest of this page gives some general information about the app and composite indicators. If you want to get started quickly, go straight to @sec-overview. Detailed documentation on each tab of the app starts at @sec-datainput.
+
+## Composite indicators
+
+Indicators are used in many contexts to measure complex multidimensional concepts, typically with the aim of prioritising resources and interventions, and also to track progress. In the international/policy context, indicators are often used to compare countries and/or sub-national regions. *Maybe add some specific examples here*
+
+Quite often, the concept to be measured cannot be sufficiently captured with one indicator, and a group of indicators is needed. As the number of indicators gets larger, it becomes increasingly difficult to compare and prioritise.
+
+*Composite indicators* are mathematical aggregations of a set of indicators into a single measure. Indicators are organised into conceptual groups which aim to follow a map of the concept to be measured. Aggregating the indicators into a single composite indicator allows quick and easy comparisons, clear communication with stakeholders, and acts as a natural entry point to the data set underneath.
+
+Importantly, in building a composite indicator, *we do not wish to substitute the underlying data*, but rather to complement it with an overview measure. Composite indicators involve a number of subjective decisions in their construction, and cannot fully capture all information in the indicator set underneath. However, used carefully, they are a valuable addition and entry point to a complex data set.
+
+## Example
+
+To clarify, we give a concrete example of a composite indicator...
+
+*suggest to give simple example showing the names of a few indicators, plus hierarchical structure of the index, and explain why indicators were organised that way, also why build the CI in the first place, etc.*
+
+## Functionality
+
+The {composer} app includes the following features:
+
+-   Any number of indicators and units and aggregation levels
+-   Unit screening by data availability
+-   Missing data imputation
+-   Outlier treatment
+-   Normalisation using various methods
+-   Weighted aggregation
+-   Interactive maps (if the units are countries)
+-   Detailed analysis of indicators using bubble charts, bar charts
+-   Statistical analysis using visualisation of distributions, correlation plots
+-   Downloadable unit profiles
+-   Interactive reweighting
+-   Sensitivity analysis on assumptions, checking the effects of removing indicators and indicator groups
+
+## Methodology
+
+The composite indicator methodology used in this app follows the internationally-recognised [OECD/JRC Handbook of Composite Indicators](https://publications.jrc.ec.europa.eu/repository/handle/JRC47008), and the methodology used by the [European Commission](https://knowledge4policy.ec.europa.eu/composite-indicators_en).
+
+Most of the data processing in the app is done using the [COINr package](https://bluefoxr.github.io/COINr/), which is an R package for building and analysing composite indicators. R users may wish to additionally work with COINr directly to access functionalities not included in the app.
+
+## Terminology
+
+Throughout this book we will use the following terms:
+
+-   *Units* are the set of "things" that we want to compare and possibly rank. Often units are countries, but they could also be regions, cities or organisations, which is why we use "units" here.
+-   *Indicators* are measured variables which we use to compare units.
+-   A *composite indicator* is a mathematical aggregation of a set of indicators into one composite measure, which aims to summarise the indicator set as well as possible.

@@ -1,0 +1,34 @@
+# Unit screening {#sec-screening}
+
+The unit screening tab allows you to screen out (exclude) units automatically based on a data availability threshold.
+
+## About
+
+Indicator data typically comes from different sources, and very often has missing values. It is also common that some units have more missing data (over the full indicator set) than others. This is often seen in country-level data where developing countries have less capacity for data collection, and can have very low data availability rates.
+
+Although in principle a composite score can be calculated for a unit even with large amounts of missing data, it will only be calculated using the indicators for which data is available. This can result in a skewed and misleading score which will be missing many parts of the concept to be measured. A simple remedy here is to simply exclude any countries from the index calculation: for example, a possible rule of thumb could be to exclude any unit with less than 66% data availability.
+
+Consider that even if a unit is excluded, it doesn't imply discounting it completely. It can still be included (more qualitatively) in an analysis, presenting the indicators for which data is available.
+
+For dealing with small amounts of missing data, you can also consider imputation, which is explained in @sec-imputation.
+
+## How
+
+The {composer} app has a simple tool for screening units. In the sidebar, the "Screen units by" drop-down allows you to select whether to screen units on the basis of missing data, non-zero values, or both.
+
+![](figs/screening_1.png){width=40%}
+
+The box below lets you set the minimum proportion, which is used as the threshold value, below which units are excluded. Clicking "Run" will apply this operation to the data you uploaded and generate a new modified data set with units excluded that are below the threshold.
+
+![](figs/screening_2.png){width=40%}
+
+To see give an example - if there are ten indicators in the data set and the threshold is set at 0.66 data availability:
+
+- If unit A has five missing data points it will be excluded
+- If unit B has two missing data points, it will be included
+
+The option to apply to non-zero values is similar but considers zeros instead of missing data. For example, a unit that has five zeroes as its indicator values will be excluded if we set the threshold at 0.66. You can also set the app to screen based on both criteria (missing data OR zeroes).
+
+When the operation is run, a table will appear showing the modified data set. Any units that have been excluded will be highlighted in red. Summary statistics are also given showing the total number of included and excluded units.
+
+*Add example here with screenshot of table maybe?*

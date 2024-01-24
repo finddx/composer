@@ -1,0 +1,232 @@
+@import url("font/imperial-urw.css");
+
+:root {
+  /* 100% shade of 3 primary */
+  --primary-purple: #5b254e;
+  --primary-cyan: #00a2ab;
+  --primary-grey: #7b97a0;
+  --primary-red: #e64148;
+  /*--85% shade of 3 primary */
+  --secondary-purple: #703d5f;
+  --secondary-cyan: #00b0b7;
+  --secondary-grey: #91a5ad;
+  --secondary-red: #ea645d;
+  /* 65% shade of 3 primary */
+  --tertiary-purple: #8f637b;
+  --tertiary-cyan: #6dc3c8;
+  --tertiary-grey: #adbac0;
+  --tertiary-red: #f08d80;
+
+  --color-black: #000000;
+  --color-white: #fff;
+}
+
+.row {
+  padding: 10px;
+}
+
+/* Author */
+.author, .date, .subtitle {
+  color: var(--color-black);
+}
+
+/* Logo */
+#header img {
+  width: 25%;
+}
+
+/* Header */
+h1, h2, h3 {
+  font-family: imperial-urw, sans-serif !important;
+  text-transform: uppercase;
+}
+
+h1 {
+  color: var(--tertiary-purple);
+}
+
+h2 {
+  color: var(--tertiary-cyan);
+}
+
+h3 {
+  color: var(--tertiary-grey);
+}
+
+h4 {
+  color: var(--tertiary-red);
+}
+
+p {
+  font-family: Roboto, sans-serif;
+}
+
+/* Anchors */
+a {
+  color: var(--primary-purple);
+  text-decoration: underline;
+  font-weight: 100;
+}
+
+a:hover, a:focus {
+  color: var(--primary-purple);
+  text-decoration: underline;
+  font-weight: 100;
+}
+
+.list-group-item.active {
+  border-color: var(--primary-purple);
+  background-color: var(--primary-purple);
+}
+
+.list-group-item.active:hover {
+  border-color: var(--primary-purple);
+  background-color: var(--primary-purple);
+}
+
+table.dataTable tr.selected td, table.dataTable td.selected {
+  background-color: var(--tertiary-purple) !important;
+  color: var(--color-white);
+}
+
+.dataTables_wrapper {
+  font-family: imperial-urw, sans-serif !important;
+}
+
+/* Code in text */
+code {
+  background-color: var(--tertiary-purple);
+  color: var(--color-white);
+}
+
+/* Code in chunks */
+code span.fu {
+  color: var(--primary-purple);
+  font-weight: 700;
+}
+
+code span.at {
+  color: var(--primary-cyan);
+}
+
+code span.st {
+  color: var(--primary-grey);
+}
+
+code span.cn {
+  color: var(--primary-red);
+}
+
+/* Buttons */
+.btn-default, .open>.dropdown-toggle.btn {
+  color: var(--color-white);
+  border-color: var(--primary-red);
+  background-color: var(--secondary-red);
+}
+
+.btn-default .caret, .open>.dropdown-toggle.btn .caret {
+  margin-left: 4px;
+  transform: rotate(90deg);
+}
+
+.btn-default:hover, .btn-default:active, .btn-default:focus, .open>.dropdown-toggle.btn:hover, .open>.dropdown-toggle.btn:active, .open>.dropdown-toggle.btn:focus {
+  color: var(--color-white);
+  border-color: var(--primary-red);
+  background-color: var(--secondary-red);
+}
+
+.btn-default:hover .caret, .btn-default:active .caret, .btn-default:focus .caret, .open>.dropdown-toggle.btn:hover .caret, .open>.dropdown-toggle.btn:active .caret, .open>.dropdown-toggle.btn:focus .caret {
+  margin-left: 4px;
+  transform: rotate(0deg);
+}
+
+.btn-default:hover:active, .btn-default:hover:focus-visible, .btn-default:active:active, .btn-default:active:focus-visible, .btn-default:focus:active, .btn-default:focus:focus-visible, .open>.dropdown-toggle.btn:hover:active, .open>.dropdown-toggle.btn:hover:focus-visible, .open>.dropdown-toggle.btn:active:active, .open>.dropdown-toggle.btn:active:focus-visible, .open>.dropdown-toggle.btn:focus:active, .open>.dropdown-toggle.btn:focus:focus-visible {
+  color: var(--color-white);
+  border-color: var(--primary-red);
+  background-color: var(--secondary-red);
+  outline: 0;
+}
+
+.btn-default:hover:active .caret, .btn-default:hover:focus-visible .caret, .btn-default:active:active .caret, .btn-default:active:focus-visible .caret, .btn-default:focus:active .caret, .btn-default:focus:focus-visible .caret, .open>.dropdown-toggle.btn:hover:active .caret, .open>.dropdown-toggle.btn:hover:focus-visible .caret, .open>.dropdown-toggle.btn:active:active .caret, .open>.dropdown-toggle.btn:active:focus-visible .caret, .open>.dropdown-toggle.btn:focus:active .caret, .open>.dropdown-toggle.btn:focus:focus-visible .caret {
+  margin-left: 4px;
+  transform: rotate(0deg);
+}
+
+/* Tables */
+.table {
+    width: auto !important; /* to be removed if we want a full page design */
+    border: none;
+    box-shadow: none;
+}
+
+table{ /* body */
+  border-collapse: collapse;
+  border: none; /* charcoal-grey */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th { /* columns names */
+  color: white;
+  background: var(--tertiary-purple);
+}
+
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover { /* cells style */
+  background-color: transparent !important;
+}
+
+table.dataTable tbody tr, table.dataTable.display tbody tr {
+  background-color: transparent !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    color: var(--tertiary-purple);
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+  outline: solid 2px var(--tertiary-purple);
+}
+
+.dataTables_wrapper .dataTables_length select {
+  color: var(--tertiary-purple);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: var(--tertiary-purple);
+  border: none !important;
+  color: white !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: transparent;
+  color: var(--tertiary-purple) !important;
+}
+
+/* Tabsets */
+.nav-tabs > li > a {
+    color: var(--tertiary-cyan);
+    text-decoration: none;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    cursor: default;
+    background-color: transparent;
+    font-weight: bold;
+    border: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color:  transparent;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-bottom-color: var(--tertiary-cyan);
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+}
+
+.tab-content>.tab-pane {
+    animation: fadein .8s;
+}

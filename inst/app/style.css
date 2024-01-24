@@ -1,0 +1,204 @@
+
+.rt-tbody a {
+  color: #00A2AB !important;
+}
+
+
+.plot-box {
+	margin-bottom: 30px;
+}
+
+.hero {
+  color: #fff;
+  background-size: 100vw auto;
+  background-position: 50%;
+  background-size: cover;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 120px !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+
+.hero .gradient {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #00a5b1 !important;
+  opacity: .8;
+}
+
+.hero .content a {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .hero .content {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+}
+
+/* more side padding on larger screens */
+@media (min-width: 768px) {
+  .container-fluid {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+}
+
+.hero .content {
+    padding-right: 3%;
+    padding-left: 3%;
+  }
+
+.container-fluid {
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+
+
+.btn {
+	position: relative;
+	display: inline-block;
+	font-family: Roboto,sans-serif;
+	font-weight: 700;
+	font-stretch: normal;
+	line-height: 1;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.btn.red {
+	background-color: #e34a3e;
+	color: #fff !important;
+	text-transform: uppercase;
+	text-decoration: none;
+	border-radius: 20px;
+}
+
+.redbtn.nofill {
+	background-color: #fff;
+	color: #e34a3e !important;
+	text-decoration: none;
+	border: 1px solid #e34a3e;
+	border-radius: 20px;
+}
+
+.nav-tabs {
+	color: black !important;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+	color: #555;
+	cursor: default;
+	background-color: #fff;
+	border: 0px !important;
+	border-bottom: 2px solid #e34a3e !important;
+}
+
+
+.nav-tabs > li > a:hover {
+  background-color: #e34a3e12   !important;
+}
+
+.content {
+	min-height: 120px;
+  margin-left: 0px !important;
+}
+
+h1 {
+  font-weight: 550 !important;
+}
+.tab-pane h3, .tab-pane p {
+  margin-left: 10px;
+}
+
+.gray-circle {
+  height: 25px;
+  width: 25px;
+  background-color: #EEEEEE;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  vertical-align:middle;
+  margin-right: 5px
+}
+
+.green-circle {
+  height: 25px;
+  width: 25px;
+  background-color: #489FA9;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  vertical-align:middle;
+  margin-right: 5px
+}
+
+.red-circle {
+  height: 25px;
+  width: 25px;
+  background-color: #e34a3e;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  vertical-align:middle;
+  margin-right: 5px
+}
+
+
+placeholder {
+  color: #ddd;
+}
+
+.dataTables_wrapper .dataTables_filter {
+	float: none !important;
+	text-align: right !important;
+	margin-bottom:19px;
+}
+
+.tab-pane {
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  min-height: 400px;
+  color: black;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.tab-content .tabbable .tab-content .tab-pane {
+  border: 0px !important;
+}
+
+.data-input-section {
+  /*border: solid 1px #ddd;*/
+  /*border-radius: 5px;*/
+  min-height: 480px;
+  padding: 10px;
+}
+
+
+.nav li a.disabled {
+  background-color: #aaa !important;
+  color: #333 !important;
+  cursor: not-allowed !important;
+  border-color: #aaa !important;
+}
+
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+/* Valuebox in country profile */
+.small-box.bg-red {
+  background-color: #489FA9 !important;
+  color: #fff !important;
+}
