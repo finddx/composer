@@ -5,7 +5,7 @@ bslib_ui <- function(id = NULL){
   bookmark_type <- "URL" # set either "URL" or "RDS"
 
   page_navbar(
-    title = span(icon("coins"), "ShinyCOINr"),
+    title = span(icon("music"), "composer"),
     bg = "#0062cc",
     underline = TRUE,
 

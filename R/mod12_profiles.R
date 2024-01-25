@@ -21,7 +21,7 @@ profiles_ui <- function(id) {
                   "Select units",
                   choices = NULL
       ),
-      shinyWidgets::prettySwitch(
+      input_switch(
         ns("i_stack_cp_bar"),
         label = "Show component scores (bar chart)",
         value = TRUE
@@ -227,7 +227,7 @@ make_unit_profile <- function(coin, stack_children, usel, unit_results,
                               ulabs, out_path){
 
   rmarkdown::render(
-    system.file("unit_report.Rmd", package = "findcompositeindicator"),
+    system.file("unit_report.Rmd", package = "composer"),
     output_file = out_path,
     params = list(
       COIN = coin,

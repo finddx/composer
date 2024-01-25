@@ -90,3 +90,15 @@ add_find_logo <- function(e, image = "www/img/logo_header.svg",
   e
 
 }
+
+# this function replicates shinyfind::pal_find() to remove dependency on that
+# package
+pal_find <- function(n = 14){
+  stopifnot(n <= 14)
+  find_colors <- c("#5b254e", "#00a2ab", "#7b97a0", "#e64148",
+                            "#306e7c", "#9b2c4c", "#703d5f", "#00b0b7", "#91a5ad",
+                            "#ea645d", "#8f637b", "#6dc3c8", "#adbac0", "#f08d80",
+                            "#01A2AB", "#F19576", "#E85239")
+
+  find_colors[1:n]
+}

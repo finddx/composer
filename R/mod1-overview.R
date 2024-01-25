@@ -131,7 +131,6 @@ overview_server <-  function(id, r_share, coin) {
 #' @importFrom readxl excel_sheets read_xlsx
 #' @importFrom tools file_ext
 #' @importFrom COINr new_coin
-#' @importFrom readr read_csv
 #'
 #' @examples
 #' # excel
@@ -151,25 +150,26 @@ f_read_input <- function(path1, path2, input_type){
   # depending on input_type
   if(input_type == "csv"){
 
-    # check file is the right type
-    file_ext1 <- tools::file_ext(path1)
-    # check
-    if(file_ext1 != "csv"){
-      send_input_error("The file at the first path specified is not a csv file as expected.", "Input file")
-      return(NULL)
-      #stop("The file at the first path specified is not a csv file as expected.")
-    }
-    file_ext2 <- tools::file_ext(path2)
-    # check
-    if(file_ext2 != "csv"){
-      send_input_error("The file at the second path specified is not a csv file as expected.", "Input file")
-      return(NULL)
-      #stop("The file at the second path specified is not a csv file as expected.")
-    }
-
-    # read in files
-    iData <- suppressMessages(readr::read_csv(path1, na = na_strings))
-    iMeta <- suppressMessages(readr::read_csv(path2, na = na_strings))
+    stop("This file type has been disabled to reduce package dependencies.")
+    # # check file is the right type
+    # file_ext1 <- tools::file_ext(path1)
+    # # check
+    # if(file_ext1 != "csv"){
+    #   send_input_error("The file at the first path specified is not a csv file as expected.", "Input file")
+    #   return(NULL)
+    #   #stop("The file at the first path specified is not a csv file as expected.")
+    # }
+    # file_ext2 <- tools::file_ext(path2)
+    # # check
+    # if(file_ext2 != "csv"){
+    #   send_input_error("The file at the second path specified is not a csv file as expected.", "Input file")
+    #   return(NULL)
+    #   #stop("The file at the second path specified is not a csv file as expected.")
+    # }
+    #
+    # # read in files
+    # iData <- suppressMessages(readr::read_csv(path1, na = na_strings))
+    # iMeta <- suppressMessages(readr::read_csv(path2, na = na_strings))
 
   } else {
 
@@ -249,7 +249,7 @@ f_read_input <- function(path1, path2, input_type){
 f_check_ISO3 <- function(uCodes){
 
   n_codes <- length(uCodes)
-  detected_ISO3s <- intersect(uCodes, findcompositeindicator::valid_countries$ISO3)
+  detected_ISO3s <- intersect(uCodes, composer::valid_countries$ISO3)
   n_detected <- length(detected_ISO3s)
 
   if (n_detected == 0){

@@ -17,9 +17,9 @@ bar_ui <- function(id) {
 
       selectInput(ns("i_indicator_explore_bar"), "Indicator", choices = NULL),
 
-      shinyWidgets::prettySwitch(ns("i_stack_explore_bar"), label = "Show component scores"),
-      shinyWidgets::prettySwitch(ns("i_explore_bar_vert"), label = "Make vertical", value = FALSE),
-      shinyWidgets::prettySwitch(ns("i_explore_bar_uname"), label = "Use unit names", value = TRUE),
+      input_switch(ns("i_stack_explore_bar"), label = "Show component scores"),
+      input_switch(ns("i_explore_bar_vert"), label = "Make vertical", value = FALSE),
+      input_switch(ns("i_explore_bar_uname"), label = "Use unit names", value = TRUE),
 
       selectInput(
         ns("i_explore_bar_subset"),

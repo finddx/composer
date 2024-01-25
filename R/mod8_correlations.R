@@ -32,9 +32,9 @@ correlations_ui <- function(id) {
       selectInput(ns("i_group2"), label = NULL, choices = NULL),
       numericInput(ns("i_corr_level2"), "At level", 1),
 
-      shinyWidgets::prettySwitch(ns("i_corr_show_values"), label = "Show values"),
-      shinyWidgets::prettySwitch(ns("i_corr_discrete_colours"), label = "Discrete colours"),
-      shinyWidgets::prettySwitch(ns("i_corr_by_groups"), label = "Show groupings"),
+      input_switch(ns("i_corr_show_values"), label = "Show values"),
+      input_switch(ns("i_corr_discrete_colours"), label = "Discrete colours"),
+      input_switch(ns("i_corr_by_groups"), label = "Show groupings"),
 
       actionButton(ns("i_explore_corr_submit_btn"), "Run")
 

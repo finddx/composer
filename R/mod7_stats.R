@@ -39,8 +39,8 @@ stats_ui <- function(id) {
           selectInput(inputId = ns('i_scatterplot_yvar'),
                       label = 'Plot against',
                       choices = NULL),
-          shinyWidgets::prettySwitch(ns("scat_logx"), label = "Log X"),
-          shinyWidgets::prettySwitch(ns("scat_logy"), label = "Log Y")
+          input_switch(ns("scat_logx"), label = "Log X"),
+          input_switch(ns("scat_logy"), label = "Log Y")
         ),
         card_body(
           plotlyOutput(ns("o_plot_scatter"))
