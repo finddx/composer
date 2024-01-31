@@ -7,6 +7,5 @@
 run_gui()
 }
 \description{
-This function launches the FIND-CI app. The coinr_ui function is wrapped by
-the shinyfind package for styling.
+This function launches the composer app.
 }

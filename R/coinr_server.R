@@ -39,8 +39,8 @@ coinr_server <- function(input, output, session) {
 
   # add paths to resources for the app (files to download etc.)
   # This makes files in package source inst/app/www available to the app at www/
-  addResourcePath('www', system.file('app/www', package = "findcompositeindicator"))
-  addResourcePath('docs', system.file('docs', package = "findcompositeindicator"))
+  addResourcePath('www', system.file('app/www', package = "composer"))
+  addResourcePath('docs', system.file('docs', package = "composer"))
 
   # Documentation
   output$docu <- renderUI({
@@ -54,7 +54,7 @@ coinr_server <- function(input, output, session) {
   # Export to Excel
   output$export_to_excel <- downloadHandler(
     filename = function() {
-      paste("find_results-", Sys.Date(), ".xlsx", sep = "")
+      paste("composer_results-", Sys.Date(), ".xlsx", sep = "")
     },
     content = function(con) {
       req(coin())

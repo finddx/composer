@@ -87,8 +87,6 @@ map_server <- function(id, r_share, coin) {
 #' @param dset Name of data set containing the indicator/aggregate to plot
 #' @param iCode The code of the indicator/aggregate to plot
 #'
-#' @importFrom shinyfind pal_find
-#'
 #' @return An echarts4r plot
 #' @noRd
 f_plot_map <- function(coin, dset = "Aggregated", iCode = NULL, roam = TRUE) {

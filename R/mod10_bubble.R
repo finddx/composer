@@ -22,8 +22,8 @@ bubble_ui <- function(id) {
       selectInput(ns("i_indicator_explore_bubble_iCode_group"), "Colour by group", choices = NULL),
 
       # log switches
-      shinyWidgets::prettySwitch(ns("i_indicator_explore_log_x"), label = "Log x-axis", value = FALSE),
-      shinyWidgets::prettySwitch(ns("i_indicator_explore_log_y"), label = "Log y-axis", value = FALSE),
+      input_switch(ns("i_indicator_explore_log_x"), label = "Log x-axis", value = FALSE),
+      input_switch(ns("i_indicator_explore_log_y"), label = "Log y-axis", value = FALSE),
 
       # threshold settings
       numericInput(ns("i_indicator_explore_threshold_x"), "Threshold for x-axis", value = NULL),
@@ -240,7 +240,7 @@ f_plot_bubble <- function(coin,
     e_toolbox() |>
     e_legend(top = "30px", type = "scroll") |>
     e_toolbox_feature(feature = "dataZoom") |>
-    e_toolbox_feature(feature = "saveAsImage", name = "FIND Plot") |>
+    e_toolbox_feature(feature = "saveAsImage", name = "composer plot") |>
     e_y_axis(
       name = yaxis_name,
       type = axis_y,
