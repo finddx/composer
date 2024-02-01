@@ -5,6 +5,7 @@ bslib_ui <- function(id = NULL){
   bookmark_type <- "URL" # set either "URL" or "RDS"
 
   page_navbar(
+    id = "navpanel_selected",
     title = span(icon("music"), "composer"),
     bg = "#0062cc",
     underline = TRUE,
@@ -125,15 +126,18 @@ bslib_ui <- function(id = NULL){
     nav_menu(
       title = "Save/export",
       align = "right",
+      nav_item(make_bookmark_button(bookmark_type)),
       nav_item(
-        downloadButton("export_to_excel", label = "Export", icon = icon("file-excel"))
+        downloadButton("export_to_excel", label = "Export to Excel", icon = icon("file-excel"))
       ),
-      nav_item(make_bookmark_button(bookmark_type))
+      nav_item(
+        downloadButton("export_to_R", label = "Export to R")
+      )
     ),
 
 
     nav_item(
-      tags$a(href="https://finddx.github.io/composer/", icon("circle-question"))
+      tags$a(href="https://finddx.github.io/composer/", target="_blank", icon("circle-question"))
     ),
 
     footer = p(

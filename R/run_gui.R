@@ -8,6 +8,6 @@ run_gui <- function() {
 
   enableBookmarking(store = "server")
   # Run the application
-  shinyApp(ui = bslib_ui, server = coinr_server)
-
+  shinyApp(ui = bslib_ui, server = coinr_server,
+           options = list(launch.browser = TRUE))
 }

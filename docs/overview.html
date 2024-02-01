@@ -247,11 +247,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">2.1</span> Before you start</a></li>
   <li><a href="#data-input" id="toc-data-input" class="nav-link" data-scroll-target="#data-input"><span class="header-section-number">2.2</span> Data input</a></li>
   <li><a href="#data-operations" id="toc-data-operations" class="nav-link" data-scroll-target="#data-operations"><span class="header-section-number">2.3</span> Data operations</a></li>
-  <li><a href="#compose" id="toc-compose" class="nav-link" data-scroll-target="#compose"><span class="header-section-number">2.4</span> Compose</a></li>
-  <li><a href="#explore" id="toc-explore" class="nav-link" data-scroll-target="#explore"><span class="header-section-number">2.5</span> Explore</a></li>
-  <li><a href="#unit-profiles" id="toc-unit-profiles" class="nav-link" data-scroll-target="#unit-profiles"><span class="header-section-number">2.6</span> Unit profiles</a></li>
-  <li><a href="#adjust" id="toc-adjust" class="nav-link" data-scroll-target="#adjust"><span class="header-section-number">2.7</span> Adjust</a></li>
-  <li><a href="#export-and-sessions" id="toc-export-and-sessions" class="nav-link" data-scroll-target="#export-and-sessions"><span class="header-section-number">2.8</span> Export and sessions</a></li>
+  <li><a href="#normalise" id="toc-normalise" class="nav-link" data-scroll-target="#normalise"><span class="header-section-number">2.4</span> Normalise</a></li>
+  <li><a href="#compose-index" id="toc-compose-index" class="nav-link" data-scroll-target="#compose-index"><span class="header-section-number">2.5</span> Compose Index</a></li>
+  <li><a href="#explore" id="toc-explore" class="nav-link" data-scroll-target="#explore"><span class="header-section-number">2.6</span> Explore</a></li>
+  <li><a href="#unit-profiles" id="toc-unit-profiles" class="nav-link" data-scroll-target="#unit-profiles"><span class="header-section-number">2.7</span> Unit profiles</a></li>
+  <li><a href="#adjust" id="toc-adjust" class="nav-link" data-scroll-target="#adjust"><span class="header-section-number">2.8</span> Adjust</a></li>
+  <li><a href="#export-and-saving-session" id="toc-export-and-saving-session" class="nav-link" data-scroll-target="#export-and-saving-session"><span class="header-section-number">2.9</span> Export and saving session</a></li>
   </ul>
 </nav>
     </div>
@@ -280,8 +281,21 @@ ul.task-list li input[type="checkbox"] {
 <section id="before-you-start" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">2.1</span> Before you start</h2>
 <p>The {composer} app deals with the numerical data-processing steps in composite indicator construction. Before arriving at this point, it is necessary to have a set of indicators which follow a <em>conceptual framework</em>.</p>
-<p>The conceptual framework is a map of the concept you want to measure. Typically, the overall concept is broken down into sub-concepts (“dimensions”), which themselves may be broken down into smaller chunks. This results in a hierarchical map of the concept, with indicators at the bottom level which aim to capture each chunk of the concept. The framework can have any number of levels, although simplicity should be preferred where possible.</p>
-<p><em>Add example here?</em></p>
+<p>The conceptual framework is a map of the concept you want to measure. Typically, the overall concept is broken down into sub-concepts (“dimensions”), which themselves may be broken down into smaller chunks. This results in a hierarchical map of the concept.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/overview_1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Deconstruction of concept into conceptual framework.</figcaption>
+</figure>
+</div>
+<p>At this point, indicators are assigned to the groups at the lowest level in the conceptual framework (in the figure above this is the sub-dimensions). The aim is that each sub-dimension is well-measured by the group of indicators assigned to it. Then, a score can be calculated for each sub-dimension using a weighted aggregation (e.g.&nbsp;the weighted mean). Scores for dimensions are calculated by aggregating sub-dimension scores, and the index score is calculated by aggregating the dimension scores. The conceptual framework therefore maps the <em>deconstruction</em> of the concept and also its mathematical <em>reconstruction</em> via the indicator framework.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/overview_2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Reconstruction of concept with indicators and aggregation.</figcaption>
+</figure>
+</div>
+<p>This approach can result in a conceptual framework with any number of indicators and levels, but <a href="https://en.wikipedia.org/wiki/Occam%27s_razor">simplicity should be preferred where possible</a>.</p>
 <p>Typically the conceptual framework is constructed by consulting experts, and performing a literature review. If you yourself are an expert in the topic, you may be able to map the concept sufficiently well on your own. A more detailed explanation of building a conceptual framework can be found <a href="https://compositeindicators.com/how-to-build-a-conceptual-framework/">here</a>.</p>
 <p>After the conceptual framework, indicators are selected. You should aim to have enough indicators to sufficiently capture the concept to be measured, but avoid redundancies and overlaps as much as possible. Evaluate each indicator critically based on its relevance, value added, reliability, data availability and other criteria. Don’t automatically include indicators simply because data is available. Some more guidance on indicator selection can be found <a href="https://compositeindicators.com/how-to-select-indicators/">here</a>.</p>
 <p>For each indicator, collect as much available data as possible. If possible, use a reproducible workflow to clean and process each indicator, so that there is a clear record of how the indicator arrived in its present state. This can be invaluable when later on stakeholders may ask questions about the methodology behind indicators, and also helps to spot errors. If your data is measuring attributes of countries, use <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">ISO alpha-3 country codes</a> - this allows the app to translate your data onto maps, and is anyway good practice for merging data.</p>
@@ -292,50 +306,60 @@ ul.task-list li input[type="checkbox"] {
 <p>The next step is to enter your data into the app. To do this, you have to compose your data set and conceptual framework into a single spreadsheet containing the formatted input tables required by the {composer} app. This step needs to be done carefully and is explained in more detail in <a href="data_input.html"><span>Chapter&nbsp;4</span></a>.</p>
 <p>The app will attempt to spot any errors in your input data and give helpful error messages where possible. However, it is important to carefully read the instructions on input data formatting.</p>
 <p>Once the data is correctly formatted, upload your data to the app. If successful, the app will return a summary of the input data, as well as visual plot of the conceptual framework.</p>
-<p><img src="figs/framework.png" class="img-fluid" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/framework.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Example framework plot</figcaption>
+</figure>
+</div>
 <p>The framework plot should reflect the expected index structure.</p>
 </section>
 <section id="data-operations" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="data-operations"><span class="header-section-number">2.3</span> Data operations</h2>
-<p>The data operations tab contains a group of four possible operations to apply to your data set. All of these options are optional, except normalisation which is required.</p>
-<p><img src="figs/data_operation_tabs.png" class="img-fluid" style="width:70.0%"></p>
+<p>The data operations tab group contains a group of three possible operations to apply to your data set. All of these options are optional.</p>
+<p><img src="figs/data_operation_tabs.png" class="img-fluid" style="width:20.0%"></p>
 <p>The <strong>screening</strong> tab allows you to remove units (e.g.&nbsp;countries) based on a data availability threshold. This can be useful to exclude any units with very low data availability. Screening can also be performed based on the proportion of zeroes. This is explained more in <a href="screening.html"><span>Chapter&nbsp;5</span></a>.</p>
 <p>The <strong>imputation</strong> tab provides several simple approaches to estimating missing data points. Note that imputation should be used carefully and only for small amounts of missing data. If an indicator or unit has a high proportion of missing data points, it may be better to exclude it. This is explained in <a href="imputation.html"><span>Chapter&nbsp;6</span></a>.</p>
 <p>The <strong>outlier treatment</strong> tab uses a built-in algorithm to treat outliers. The reasons for doing this, and the methodology behind it, are explained in <a href="outliers.html"><span>Chapter&nbsp;7</span></a>.</p>
-<p>Finally, the <strong>normalisation</strong> tab gives several options for normalising indicators, i.e.&nbsp;bringing them onto a common scale ready for aggregation. This step is mandatory to calculate index scores, because aggregating indicators on very different scales hardly ever makes any sense. Normalisation is explained in <a href="normalisation.html"><span>Chapter&nbsp;8</span></a>.</p>
 <p>Each operation is applied in order, so e.g.&nbsp;imputation will be applied the data set produced by the screening tab, if that was run. Outlier treatment will be applied to the imputed data set, if imputation was run. Although data operations are optional, it is not possible to change the order of data operations (e.g.&nbsp;you cannot do outlier treatment before imputation).</p>
 <p>It is up to you which operations you apply. Usually it is a good idea to screen out any units with low data, and treat any major outliers. However these choices are subjective.</p>
 </section>
-<section id="compose" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="compose"><span class="header-section-number">2.4</span> Compose</h2>
-<p>The compose tab allows you to aggregate your normalised indicator data, in order to calculate all scores up to the index level. It aggregates using one of the selected methods, using the weights specified in your input data.</p>
+<section id="normalise" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="normalise"><span class="header-section-number">2.4</span> Normalise</h2>
+<p>After the optional data operations, the <strong>normalisation</strong> tab gives several options for normalising indicators, i.e.&nbsp;bringing them onto a common scale ready for aggregation. This step is mandatory to calculate index scores, because aggregating indicators on very different scales hardly ever makes any sense. Normalisation is explained in <a href="normalisation.html"><span>Chapter&nbsp;8</span></a>.</p>
+</section>
+<section id="compose-index" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="compose-index"><span class="header-section-number">2.5</span> Compose Index</h2>
+<p>The Compose Index tab allows you to aggregate your normalised indicator data, in order to calculate all scores up to the index level. It aggregates using one of the selected methods, using the weights specified in your input data.</p>
 <p>The immediate output here is a results table. The results are used in the rest of the app, and can be visualised and explored in the following tabs. Later, you also have the option to adjust the index, and you can anyway go back and alter the methodology in the previous tabs.</p>
 </section>
-<section id="explore" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="explore"><span class="header-section-number">2.5</span> Explore</h2>
+<section id="explore" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="explore"><span class="header-section-number">2.6</span> Explore</h2>
 <p>The explore group of tabs gives various options for visualising and analysing the results (the index scores) as well as the indicator data itself.</p>
-<p><img src="figs/explore_tabs.png" class="img-fluid" style="width:70.0%"></p>
+<p><img src="figs/explore_tabs.png" class="img-fluid" style="width:20.0%"></p>
 <p>First, the <strong>map</strong> tab allows the index, or any indicator, to be displayed as choropleth map. This will only work if your data is at the country level, AND the indicator codes correspond to ISO alpha-3 codes, as mentioned previously.</p>
 <p>The <strong>bar</strong> tab is similar to the map tab, but shows index or indicator scores ordered in a bar chart, and can be used for non-country data.</p>
 <p>The <strong>bubble</strong> tab gives a sophisticated interface for plotting any indicator/index against any other, and allows points to be sized and coloured according to other variables and groups.</p>
 <p>The <strong>descriptive stats</strong> tab allows the statistics of each indicator to be explored in detail via distribution plots, and also summarises potential issues with individual indicators.</p>
 <p>Finally, the <strong>correlations</strong> tab generates correlation heatmaps of any group of indicators against any other. This can be useful for seeing at a glance how indicators are related, and can also help to spot errors in directionality.</p>
 </section>
-<section id="unit-profiles" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="unit-profiles"><span class="header-section-number">2.6</span> Unit profiles</h2>
+<section id="unit-profiles" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="unit-profiles"><span class="header-section-number">2.7</span> Unit profiles</h2>
 <p>The unit profiles tab allows you to zoom in on the scores of any selected unit. The aim is to go back to the raw data and show <em>why</em> each unit has a high or low score, in terms of its underlying indicators. Top and bottom-ranking indicators are listed, and unit reports can be dowloaded as HTML files.</p>
 </section>
-<section id="adjust" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="adjust"><span class="header-section-number">2.7</span> Adjust</h2>
+<section id="adjust" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="adjust"><span class="header-section-number">2.8</span> Adjust</h2>
 <p>The last tab group is for adjusting the index and exploring its robustness.</p>
 <p>The first tab, called <strong>reweighting</strong>, allows to explore the effects of changing the weights at any level, and compare the results with the weights currently used in the “compose” tab. You can save weight sets and then use them as the “official” set for the results by returning to the compose tab and using the saved weight set.</p>
 <p>The <strong>removing elements</strong> tab explores the impact of removing indicators, or whole indicator groups, from the framework. It allows to see which indicators may perhaps have little effect on the results, therefore pointing to ways to reduce the indicator framework size if needed.</p>
 <p>Finally, the <strong>sensitivity analysis</strong> tab allows you to formally explore the impacts of assumptions made in the construction of the index, and estimate the uncertainty in the rankings. This is done by exploring alternative plausible ways to construct the index.</p>
 </section>
-<section id="export-and-sessions" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="export-and-sessions"><span class="header-section-number">2.8</span> Export and sessions</h2>
-<p>At any point in the app, you can save your session by clicking the “save session” button <em>NOTE: to complete this when we finalise how it should work</em>.</p>
-<p>Similarly, the results can be exported to Excel at any point (after successful data upload) by clicking the “Export to Excel” button.</p>
+<section id="export-and-saving-session" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="export-and-saving-session"><span class="header-section-number">2.9</span> Export and saving session</h2>
+<p>Options for saving the session and exporting the data are found in the “Save/export” dropdown in the top-right of the navbar.</p>
+<p>At any point in the app, you can save your session by clicking the “Bookmark” button. This uses Shiny’s bookmarking capability to save the state of the app, plus the uploaded data, to a bookmark directory. It then provides the user with a link to copy. To return to a previous session, you have to run <code>run_gui()</code> again (this establishes a Shiny session in your browser), then enter the link in the navigation bar. Of course, you have to be careful not to move or delete the <code>\shiny_bookmarks</code> folder that is created when you bookmark the app, otherwise the link will not work.</p>
+<p>Similarly, the results can be exported to Excel at any point (after successful data upload) by clicking the “Export to Excel” button. This writes the data, index structure and any results to a spreadhseet.</p>
+<p>Finally, if you wish to switch to R and use the COINr package, you can use the “Export to R” button to download the “coin” which has been created by the app, and subsequently use it with COINr in R.</p>
 
 
 </section>

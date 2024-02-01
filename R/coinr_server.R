@@ -1,7 +1,9 @@
 coinr_server <- function(input, output, session) {
 
-  # set max file upload size to 30 MB
-  options(shiny.maxRequestSize=30*1024^2)
+  options(
+    shiny.maxRequestSize=30*1024^2, # set max file upload size to 30 MB
+    shiny.launch.browser = TRUE # launch browser by default
+  )
 
   bookmark_type <- "URL" # set either "URL" or "RDS"
 
@@ -59,6 +61,17 @@ coinr_server <- function(input, output, session) {
     content = function(con) {
       req(coin())
       COINr::export_to_excel(coin(), fname = con)
+    }
+  )
+
+  # Export to R
+  output$export_to_R <- downloadHandler(
+    filename = function() {
+      paste("composer_coin-", Sys.Date(), ".RDS", sep = "")
+    },
+    content = function(con) {
+      req(coin())
+      saveRDS(coin(), file = con)
     }
   )
 

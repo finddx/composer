@@ -8,9 +8,15 @@ In general, users are expected to prepare their data and indicator framework bef
 
 The {composer} app deals with the numerical data-processing steps in composite indicator construction. Before arriving at this point, it is necessary to have a set of indicators which follow a *conceptual framework*.
 
-The conceptual framework is a map of the concept you want to measure. Typically, the overall concept is broken down into sub-concepts ("dimensions"), which themselves may be broken down into smaller chunks.  This results in a hierarchical map of the concept, with indicators at the bottom level which aim to capture each chunk of the concept. The framework can have any number of levels, although simplicity should be preferred where possible.
+The conceptual framework is a map of the concept you want to measure. Typically, the overall concept is broken down into sub-concepts ("dimensions"), which themselves may be broken down into smaller chunks. This results in a hierarchical map of the concept.
 
-*Add example here?*
+![Deconstruction of concept into conceptual framework.](figs/overview_1.png)
+
+At this point, indicators are assigned to the groups at the lowest level in the conceptual framework (in the figure above this is the sub-dimensions). The aim is that each sub-dimension is well-measured by the group of indicators assigned to it. Then, a score can be calculated for each sub-dimension using a weighted aggregation (e.g. the weighted mean). Scores for dimensions are calculated by aggregating sub-dimension scores, and the index score is calculated by aggregating the dimension scores. The conceptual framework therefore maps the *deconstruction* of the concept and also its mathematical *reconstruction* via the indicator framework.
+
+![Reconstruction of concept with indicators and aggregation.](figs/overview_2.png)
+
+This approach can result in a conceptual framework with any number of indicators and levels, but [simplicity should be preferred where possible](https://en.wikipedia.org/wiki/Occam%27s_razor).
 
 Typically the conceptual framework is constructed by consulting experts, and performing a literature review. If you yourself are an expert in the topic, you may be able to map the concept sufficiently well on your own. A more detailed explanation of building a conceptual framework can be found [here](https://compositeindicators.com/how-to-build-a-conceptual-framework/).
 
@@ -28,15 +34,15 @@ The app will attempt to spot any errors in your input data and give helpful erro
 
 Once the data is correctly formatted, upload your data to the app. If successful, the app will return a summary of the input data, as well as visual plot of the conceptual framework.
 
-![](figs/framework.png){width=50%}
+![Example framework plot](figs/framework.png){width="50%"}
 
 The framework plot should reflect the expected index structure.
 
 ## Data operations
 
-The data operations tab contains a group of four possible operations to apply to your data set. All of these options are optional, except normalisation which is required.
+The data operations tab group contains a group of three possible operations to apply to your data set. All of these options are optional.
 
-![](figs/data_operation_tabs.png){width=70%}
+![](figs/data_operation_tabs.png){width="20%"}
 
 The **screening** tab allows you to remove units (e.g. countries) based on a data availability threshold. This can be useful to exclude any units with very low data availability. Screening can also be performed based on the proportion of zeroes. This is explained more in @sec-screening.
 
@@ -44,15 +50,17 @@ The **imputation** tab provides several simple approaches to estimating missing 
 
 The **outlier treatment** tab uses a built-in algorithm to treat outliers. The reasons for doing this, and the methodology behind it, are explained in @sec-outliers.
 
-Finally, the **normalisation** tab gives several options for normalising indicators, i.e. bringing them onto a common scale ready for aggregation. This step is mandatory to calculate index scores, because aggregating indicators on very different scales hardly ever makes any sense. Normalisation is explained in @sec-normalisation.
-
 Each operation is applied in order, so e.g. imputation will be applied the data set produced by the screening tab, if that was run. Outlier treatment will be applied to the imputed data set, if imputation was run. Although data operations are optional, it is not possible to change the order of data operations (e.g. you cannot do outlier treatment before imputation).
 
 It is up to you which operations you apply. Usually it is a good idea to screen out any units with low data, and treat any major outliers. However these choices are subjective.
 
-## Compose
+## Normalise
 
-The compose tab allows you to aggregate your normalised indicator data, in order to calculate all scores up to the index level. It aggregates using one of the selected methods, using the weights specified in your input data.
+After the optional data operations, the **normalisation** tab gives several options for normalising indicators, i.e. bringing them onto a common scale ready for aggregation. This step is mandatory to calculate index scores, because aggregating indicators on very different scales hardly ever makes any sense. Normalisation is explained in @sec-normalisation.
+
+## Compose Index
+
+The Compose Index tab allows you to aggregate your normalised indicator data, in order to calculate all scores up to the index level. It aggregates using one of the selected methods, using the weights specified in your input data.
 
 The immediate output here is a results table. The results are used in the rest of the app, and can be visualised and explored in the following tabs. Later, you also have the option to adjust the index, and you can anyway go back and alter the methodology in the previous tabs.
 
@@ -60,7 +68,7 @@ The immediate output here is a results table. The results are used in the rest o
 
 The explore group of tabs gives various options for visualising and analysing the results (the index scores) as well as the indicator data itself.
 
-![](figs/explore_tabs.png){width=70%}
+![](figs/explore_tabs.png){width="20%"}
 
 First, the **map** tab allows the index, or any indicator, to be displayed as choropleth map. This will only work if your data is at the country level, AND the indicator codes correspond to ISO alpha-3 codes, as mentioned previously.
 
@@ -86,8 +94,12 @@ The **removing elements** tab explores the impact of removing indicators, or who
 
 Finally, the **sensitivity analysis** tab allows you to formally explore the impacts of assumptions made in the construction of the index, and estimate the uncertainty in the rankings. This is done by exploring alternative plausible ways to construct the index.
 
-## Export and sessions
+## Export and saving session
 
-At any point in the app, you can save your session by clicking the "save session" button *NOTE: to complete this when we finalise how it should work*.
+Options for saving the session and exporting the data are found in the "Save/export" dropdown in the top-right of the navbar.
 
-Similarly, the results can be exported to Excel at any point (after successful data upload) by clicking the "Export to Excel" button.
+At any point in the app, you can save your session by clicking the "Bookmark" button. This uses Shiny's bookmarking capability to save the state of the app, plus the uploaded data, to a bookmark directory. It then provides the user with a link to copy. To return to a previous session, you have to run `run_gui()` again (this establishes a Shiny session in your browser), then enter the link in the navigation bar. Of course, you have to be careful not to move or delete the `\shiny_bookmarks` folder that is created when you bookmark the app, otherwise the link will not work.
+
+Similarly, the results can be exported to Excel at any point (after successful data upload) by clicking the "Export to Excel" button. This writes the data, index structure and any results to a spreadhseet.
+
+Finally, if you wish to switch to R and use the COINr package, you can use the "Export to R" button to download the "coin" which has been created by the app, and subsequently use it with COINr in R.
