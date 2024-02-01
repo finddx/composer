@@ -1,6 +1,6 @@
 # UI ----------------------------------------------------------------------
 
-sensitivity_ui <- function(id) {
+sensitivity_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 

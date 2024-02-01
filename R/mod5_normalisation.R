@@ -1,7 +1,7 @@
 
 # UI ----------------------------------------------------------------------
 
-normalisation_ui <- function(id) {
+normalisation_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 

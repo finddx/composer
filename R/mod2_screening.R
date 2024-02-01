@@ -1,7 +1,7 @@
 
 # UI ----------------------------------------------------------------------
 
-screening_ui <- function(id) {
+screening_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 
@@ -54,7 +54,7 @@ screening_ui <- function(id) {
         title = "Included units",
         value = textOutput(NS(id, "num_included")),
         textOutput(NS(id, "txt_included")),
-        theme = "text-info",
+        theme = "text-success",
         showcase = icon("check"), showcase_layout = "left center",
         full_screen = FALSE, fill = TRUE
       ),
@@ -72,6 +72,7 @@ screening_ui <- function(id) {
         full_screen = TRUE,
         card_header("Screened data"),
         card_body(
+          p(id = ns("placeholder_text"), "Run screening first..."),
           DT::dataTableOutput(ns("dataScreened"))
         )
       )
@@ -103,7 +104,7 @@ screening_server <- function(id, r_shared, coin) {
       # regenerate any subsequent ops if needed
       coin_screened <- regen_outdated_coin(coin_screened, "f_unit_screening")
       coin(coin_screened) # updates the coin reactiveVal with the Screened object
-
+      shinyjs::hide("placeholder_text")
     })
 
     # undo on click
@@ -252,6 +253,7 @@ f_style_screening_table <- function(coin) {
   # 2. That the rownames are counted as a column unless removed
   # See https://rstudio.github.io/DT/ (note just above sec 2.5)
   DT::datatable(
+    style = "default",
     df_raw,
     rownames = FALSE,
     extensions = 'Buttons',

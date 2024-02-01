@@ -1,7 +1,7 @@
 
 # UI ---------------------------------------------------------------------
 
-imputation_ui <- function(id) {
+imputation_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 
@@ -65,6 +65,7 @@ imputation_ui <- function(id) {
         full_screen = TRUE,
         card_header("Imputed data"),
         card_body(
+          p(id = ns("placeholder_text"), "Run screening first..."),
           DT::dataTableOutput(ns("dataImputed"))
         )
       )
@@ -118,6 +119,7 @@ imputation_server <- function(id, r_shared, coin) {
       coin_imputed <- regen_outdated_coin(coin_imputed, "f_imputation")
       # update coin
       coin(coin_imputed)
+      shinyjs::hide("placeholder_text")
     })
 
     # undo on click

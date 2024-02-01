@@ -1,7 +1,7 @@
 
 # UI ----------------------------------------------------------------------
 
-profiles_ui <- function(id) {
+profiles_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 

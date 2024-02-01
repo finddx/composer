@@ -3,7 +3,7 @@
 
 #' @importFrom echarts4r echarts4rOutput renderEcharts4r
 #'
-map_ui <- function(id) {
+map_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 
@@ -124,7 +124,7 @@ f_plot_map <- function(coin, dset = "Aggregated", iCode = NULL, roam = TRUE) {
       calculable = FALSE,
       inRange = list(color = colors), # scale colors
     ) |>
-    add_find_logo() |>
+    #add_find_logo() |>
     e_tooltip()
 
 }

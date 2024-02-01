@@ -1,7 +1,7 @@
 
 # UI ----------------------------------------------------------------------
 
-reweighting_ui <- function(id) {
+reweighting_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 

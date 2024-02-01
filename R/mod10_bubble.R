@@ -1,7 +1,7 @@
 
 # UI ----------------------------------------------------------------------
 
-bubble_ui <- function(id) {
+bubble_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 
@@ -278,7 +278,7 @@ f_plot_bubble <- function(coin,
       title_position = "left"
     ) |>
     e_grid(height = "80%") |>
-    add_find_logo() |>
+    #add_find_logo() |>
     e_theme_custom(pal_find_to_echarts()) |>
     e_tooltip(formatter = htmlwidgets::JS(tooltip_JS(
       xname = COINr::icodes_to_inames(coin, iCode_x),

@@ -1,7 +1,7 @@
 
 # UI ----------------------------------------------------------------------
 
-bar_ui <- function(id) {
+bar_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 

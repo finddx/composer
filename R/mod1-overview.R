@@ -3,11 +3,13 @@
 
 #' @importFrom plotly plotlyOutput renderPlotly
 #'
-overview_ui <- function(id = NULL) {
+overview_ui <- function(id = NULL, sidebar_width) {
 
   ns <- NS(id)
 
   page_sidebar(
+
+    fillable = FALSE,
 
     # SIDEBAR
     sidebar = sidebar(
@@ -26,12 +28,35 @@ overview_ui <- function(id = NULL) {
       actionButton(ns("i_load_overview"), "Load Data")
     ),
 
+
+    # WELCOME MESSAGE
+    card(
+      id = ns("welcome-card"),
+      card_header("Welcome"),
+         card_body(
+           h2("Welcome to the composer app"),
+
+           span(
+             "Composer is an app for building and analysing composite indicators. It is based on the ",
+             tags$a(href="https://bluefoxr.github.io/COINr/", "COINr"),
+             " R package."
+           ),
+
+           "To begin using the app, download the template and upload your data using the controls in the sidebar.",
+
+           span(
+             tags$a(href="https://finddx.github.io/composer/", "Full documentation is available online"),
+             " and is also accessible by clicking the question mark icon in the top right of every page."
+           )
+         )
+    ),
+
     # FRAMEWORK PLOT
     card(full_screen = TRUE,
-      card_header("Index structure"),
-      card_body(
-        plotlyOutput(ns("framework"), height = "500px")
-      )
+         card_header("Index structure"),
+         card_body(
+           plotlyOutput(ns("framework"), height = "700px")
+         )
     ),
 
     # MESSAGES
@@ -41,6 +66,7 @@ overview_ui <- function(id = NULL) {
         verbatimTextOutput(ns("init_o"))
       )
     )
+
   )
 }
 
@@ -76,6 +102,9 @@ overview_server <-  function(id, r_share, coin) {
 
       # write to global coin
       coin(coin_init)
+
+      # hide welcome message
+      shinyjs::hide("welcome-card", anim = TRUE, animType = "fade", time = 1)
     })
 
     # text summary

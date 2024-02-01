@@ -1,7 +1,7 @@
 
 # UI ----------------------------------------------------------------------
 
-correlations_ui <- function(id) {
+correlations_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 

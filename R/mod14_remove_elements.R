@@ -1,6 +1,6 @@
 # UI ----------------------------------------------------------------------
 
-remove_elements_ui <- function(id) {
+remove_elements_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 

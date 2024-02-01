@@ -1,6 +1,6 @@
 # UI ----------------------------------------------------------------------
 
-compose_ui <- function(id) {
+compose_ui <- function(id, sidebar_width) {
 
   ns <- NS(id)
 
@@ -33,7 +33,7 @@ compose_ui <- function(id) {
     card(
       height = "90vh",
       full_screen = TRUE,
-      card_header("Normalised data"),
+      card_header("Results"),
       # RESULTS TABLE
       card_body(
         DT::dataTableOutput(ns("indicator_table"))
