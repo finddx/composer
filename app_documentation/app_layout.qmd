@@ -1,13 +1,13 @@
 # App layout {#sec-app_layout}
 
-The app aims for a user-friendly layout based on a main window, a side panel and a tab ribbon.
+The app aims for a user-friendly layout based on a main window, a side panel and a navbar at the top.
 
 ![App layout](figs/app_layout.png){width=100%}
 
-The tab ribbon allows you to navigate between one tab and the next in the app. More or less, you should start at the leftmost tab (Overview, which allows you to input data), and work one tab at a time to the right.
+The navbar allows you to navigate between one tab and the next in the app. In general, you should start at the leftmost tab ("Data Input", which allows you to input data), and work one tab at a time to the right. Specifically, the first tabs are for building the index, the results can be viewed in "Compose Index", and the tabs to the right of this are for analysing the results and making adjustments.
 
-In each tab, the side panel contains the controls. These may be options to apply data operations, or settings to control the visualisations.
+In the top right of the navbar are the Save/Export options for saving to Excel and R, and saving the app session (see previous chapter for details), and the app documentation which can be accessed by clicking the question mark icon in the top right.
+
+In each tab, the side panel contains the controls. These may be options to apply data operations, or settings to control the visualisations. The sidebar can be hidden by clicking the "<" arrow.
 
 The main window contains the outputs of that tab - these may be plots, tables, maps and text.
-
-Finally, at the bottom of the app there are the options to export the data, to save the session, and the in-app documentation.

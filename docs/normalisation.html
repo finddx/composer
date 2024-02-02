@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Building composite indicators with {composer} - 8&nbsp; Normalisation</title>
+<title>Building composite indicators with {composer} - 8&nbsp; Normalise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_input.html">Build</a></li><li class="breadcrumb-item"><a href="./normalisation.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_input.html">Build</a></li><li class="breadcrumb-item"><a href="./normalisation.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normalisation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -261,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-normalisation" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span></h1>
+<h1 class="title"><span id="sec-normalisation" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span></h1>
 </div>
 
 
@@ -276,14 +276,13 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>The last tab in the data operations group is normalisation. Normalisation involves bringing indicators onto a common scale so they can be aggregated. Consider that some indicators may have values in the order of billions (GDP), and others may be values less than one. In order to make them comparable, they are normalised, using one of various possible methods. In the normalisation step, the indicator is also reversed if it has a negative direction.</p>
+<p>Before calculating the index results we have to normalise our indicators. Normalisation involves bringing indicators onto a common scale so they can be aggregated. Consider that some indicators may have values in the order of billions (GDP), and others may be values less than one. In order to make them comparable, they are normalised, using one of various possible methods. In the normalisation step, the indicator is also reversed if it has a negative direction.</p>
 <p>Normalisation is mandatory in the {composer} app: it is not possible to calculate the index scores unless the normalisation has been run.</p>
 <section id="about" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="about"><span class="header-section-number">8.1</span> About</h2>
-<p><em>Anna in your example I can’t see any indicators with negative direction - even though perhaps some look like they ought to be? In any case I generate artifical examples here which you can replace.</em></p>
 <section id="linear-methods" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="linear-methods"><span class="header-section-number">8.1.1</span> Linear methods</h3>
-<p>There are several normalisation methods available in the FIND-CI app. The default is called “min-max”, and it simply rescales an indicator onto a specified interval with a minimum value <span class="math inline">\(l\)</span>, a maximum value <span class="math inline">\(u\)</span>, and consequently a range <span class="math inline">\(u-l\)</span>. By default in the app, indicators are scaled between 0 and 100.</p>
+<p>There are several normalisation methods available in the {composer} app. The default is called “min-max”, and it simply rescales an indicator onto a specified interval with a minimum value <span class="math inline">\(l\)</span>, a maximum value <span class="math inline">\(u\)</span>, and consequently a range <span class="math inline">\(u-l\)</span>. By default in the app, indicators are scaled between 0 and 100.</p>
 <p><span class="math display">\[ x' = \frac{ x - x_{\text{min}} }{ x_{\text{max}} - x_{\text{min}} } \times (u-l) + l\]</span></p>
 <p>where <span class="math inline">\(x'\)</span> is the normalised indicator value. For example, if <span class="math inline">\(l=0\)</span> and <span class="math inline">\(u=100\)</span> this will rescale the indicator to lie exactly onto the interval <span class="math inline">\([0, 100]\)</span>. An example of the min-max transform, for both negative and positive directionality indicators, is as follows.</p>
 <div class="cell">
@@ -332,7 +331,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Normalisation in the app is straightforward. Siimply select the normalisation method you want to use from the drop-down menu.</p>
 <p><img src="figs/normalisation_1.png" class="img-fluid" style="width:40.0%"></p>
 <p>If you select min-max or z-score, you will additionally have the option to set the parameters (upper/lower bounds, and mean/standard deviation, respectively). The other two methods have no parameters to set.</p>
-<p>Clicking “Run” will apply the normalisation method to the data, and generates a table with the normalised data set. As in other tabs, clicking on a column in the table will show a scatter plot of the indicator, before and after normalisation.</p>
+<p>Clicking “Run” will apply the normalisation method to the data, and generates a table with the normalised data set. As in other tabs, clicking on a column in the table will show a scatter plot of the indicator in the sidebar, before and after normalisation.</p>
 <p><img src="figs/normalisation_2.png" class="img-fluid" style="width:80.0%"></p>
 <p>You can change and adjust the normalisation simply by altering the specifications and clicking “Run” again, which will overwrite any existing normalised data.</p>
 

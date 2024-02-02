@@ -51,16 +51,28 @@ make_dset_toast <- function(dset_name){
   )
 }
 
-# Toast notification that a data set has been created
+# Error notification
 send_input_error <- function(error_message, error_context){
 
   stopifnot(is.character(error_message))
 
-  error_message <- paste0("In: ", error_context, ". ", error_message)
+  error_message <- paste0("Error in: ", error_context, ". ", error_message)
 
   showNotification(
     ui = error_message,
     type = "error",
+    duration = 10
+  )
+}
+
+# Warning notification
+send_input_warning <- function(warning_message){
+
+  stopifnot(is.character(warning_message))
+
+  showNotification(
+    ui = warning_message,
+    type = "warning",
     duration = 10
   )
 }

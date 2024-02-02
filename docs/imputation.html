@@ -153,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normalisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -272,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Imputation is the process of estimating missing data points. There are many different ways to impute missing data: the {composer} app includes some simple approaches.</p>
 <section id="about" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="about"><span class="header-section-number">6.1</span> About</h2>
-<p>Imputation involves <em>estimating</em> missing data, and the accuracy of the estimate is dependent on many factors, such as the number of missing data points and distributions of indicators. The FIND-CI methods for imputation are simple, but this also makes them easy to understand. When imputing data it is always important to review the imputed data points to see whether the results are sensible.</p>
+<p>Imputation involves <em>estimating</em> missing data, and the accuracy of the estimate is dependent on many factors, such as the number of missing data points and distributions of indicators. The {composer} methods for imputation are simple, but this also makes them easy to understand. When imputing data it is always important to review the imputed data points to see whether the results are sensible.</p>
 <p>All methods implemented in the app are univariate, i.e.&nbsp;each indicator is treated separately. The first two approaches are simply to substitute missing data points with the indicator mean or median. This means that for a given indicator, we calculate the mean or median of all observed data points, then any missing values will recieve this value.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -294,8 +294,10 @@ ul.task-list li input[type="checkbox"] {
 <p>In the app, the methods discussed above can be easily run. In the sidebar, the “Impute using” dropdown allows you to select from one of the four methods - mean, median, group-mean and group-median.</p>
 <p><img src="figs/imputation_1.png" class="img-fluid" style="width:40.0%"></p>
 <p>If a group method is selected, AND you have included grouping variables in your input data, these should be available to select in the “Use group” dropdown - selecting a grouping variable will use this as the basis for grouped imputation.</p>
-<p>When you click “Run”, the selected imputation method will be applied. This will generate a new imputed data set which will be displayed in a table. The number of missing data points before and after imputation will be reported, and the specific points that have been imputed will be highlighted green in the table. At the bottom of each column, the number of missing data points is reported.</p>
-<p><em>Anna: add example here with screenshots?</em></p>
+<p>When you click “Run”, the selected imputation method will be applied. This will generate a new imputed data set which will be displayed in a table. The number of missing data points before and after imputation will be reported, and the specific points that have been imputed will be highlighted green in the table. At the bottom of each column, the number of missing data points is reported. It is important to check that the imputed values are sensible, as imputation can sometimes have unexpected results.</p>
+<p><img src="figs/imputation_4.png" class="img-fluid" style="width:100.0%"></p>
+<p>In most cases, all missing data points will be imputed. The exception is when you impute by a unit group, and there are missing values in your grouping variable. For data points with missing group values, the app will return the data points as still missing.</p>
+<p>As with other data operations, you can re-run the operation and change specifications, and this will overwrite the previous imputed data. You can remove imputation from the the data pipeline completely by clicking “Remove operation”.</p>
 
 
 </section>

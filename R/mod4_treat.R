@@ -21,7 +21,7 @@ treat_ui <- function(id, sidebar_width) {
       "Click on table columns to visualise indicators before and after treatment.",
 
       actionButton(ns("i_outlier_btn"), "Run"),
-      actionButton(inputId = ns("i_undo"), label = "Undo"),
+      actionButton(inputId = ns("i_undo"), label = "Remove operation"),
 
       # SCATTER PLOT
       plotlyOutput(ns("o_plot_treated"), height = "400px")

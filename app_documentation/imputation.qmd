@@ -4,7 +4,7 @@ Imputation is the process of estimating missing data points. There are many diff
 
 ## About
 
-Imputation involves *estimating* missing data, and the accuracy of the estimate is dependent on many factors, such as the number of missing data points and distributions of indicators. The FIND-CI methods for imputation are simple, but this also makes them easy to understand. When imputing data it is always important to review the imputed data points to see whether the results are sensible.
+Imputation involves *estimating* missing data, and the accuracy of the estimate is dependent on many factors, such as the number of missing data points and distributions of indicators. The {composer} methods for imputation are simple, but this also makes them easy to understand. When imputing data it is always important to review the imputed data points to see whether the results are sensible.
 
 All methods implemented in the app are univariate, i.e. each indicator is treated separately. The first two approaches are simply to substitute missing data points with the indicator mean or median. This means that for a given indicator, we calculate the mean or median of all observed data points, then any missing values will recieve this value.
 
@@ -24,6 +24,10 @@ In the app, the methods discussed above can be easily run. In the sidebar, the "
 
 If a group method is selected, AND you have included grouping variables in your input data, these should be available to select in the "Use group" dropdown - selecting a grouping variable will use this as the basis for grouped imputation.
 
-When you click "Run", the selected imputation method will be applied. This will generate a new imputed data set which will be displayed in a table. The number of missing data points before and after imputation will be reported, and the specific points that have been imputed will be highlighted green in the table. At the bottom of each column, the number of missing data points is reported.
+When you click "Run", the selected imputation method will be applied. This will generate a new imputed data set which will be displayed in a table. The number of missing data points before and after imputation will be reported, and the specific points that have been imputed will be highlighted green in the table. At the bottom of each column, the number of missing data points is reported. It is important to check that the imputed values are sensible, as imputation can sometimes have unexpected results.
 
-*Anna: add example here with screenshots?*
+![](figs/imputation_4.png){width=100%}
+
+In most cases, all missing data points will be imputed. The exception is when you impute by a unit group, and there are missing values in your grouping variable. For data points with missing group values, the app will return the data points as still missing.
+
+As with other data operations, you can re-run the operation and change specifications, and this will overwrite the previous imputed data. You can remove imputation from the the data pipeline completely by clicking "Remove operation".

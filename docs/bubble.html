@@ -153,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normalisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,15 +262,18 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>The bubble chart, which is found in the “Bubble” sub-tab of the “Explore” tab group, is a powerful tool to compare the relationships between indicators and aggregates.</p>
-<p><em>More details explaining the purpose</em></p>
-<p>The sidebar gives various controls. The first four dropdown menus control which indicators or aggregates to display on the plot.</p>
+<p>The bubble chart, which is found in the “Bubble” sub-tab of the “Explore” tab group, is a powerful tool to compare the relationships between indicators and aggregates. Effectively it is a scatter plot between two variables, but can also map a third variable to the size of each point, and a grouping variable to the point colours. Note that colour mapping will only be enabled if you have entered a grouping variable with your input data.</p>
+<p>The sidebar gives various controls. The first four dropdown menus control which indicators or aggregates to display on the plot: the x and y variables, plus size and colour.</p>
 <p><img src="figs/bubble_1.png" class="img-fluid" style="width:40.0%"></p>
-<p>The bubble chart is an “enhanced” scatter plot. You can select any indicator or aggregate to plot on the x and y axes, but also each point can be sized and coloured by third and fourth variables. After selecting the variables of interest, click the “Run” button.</p>
-<p><em>Anna I leave to you to pad this out?</em></p>
-<p><img src="figs/bubble_2.png" class="img-fluid" style="width:40.0%"></p>
-<p>The other controls in the sidebar allow further adjustments. The two “Threshold” boxes can be used to draw horizontal and vertical lines on the plot which can represent thresholds.</p>
-<p>It is also possible to filter units based on grouping variables (see again <a href="data_input.html"><span>Chapter&nbsp;4</span></a>), and to highlight selected countries.</p>
+<p>After selecting the variables of interest, click the “Run” button. The plot will show the selected variables, and will also include two “threshold” lines which can be moved using the settings in the side panel. These are intended to be used to illustrate units that have passed certain significant thresholds (the meaning will be dependent on the selected indicators).</p>
+<p><img src="figs/bubble_3.png" class="img-fluid" style="width:100.0%"></p>
+<p>The bubble plot is interactive: hovering over points will momentarily filter to points of the same group. Clicking on the legend entries also allows to filter in/out each group. You can also zoom in and out and download the image using the controls in the top right.</p>
+<p>Further controls on the bubble plot include:</p>
+<ul>
+<li>Switches to enable log axes for the x and y axes</li>
+<li>A switch to enable and disable the threshold lines and set their values</li>
+<li>A “Highlight units” box, which can be used to select a subset of units to highlight on the plot</li>
+</ul>
 
 
 

@@ -15,14 +15,14 @@ Depends:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
-    iCOINr (>= 0.2.8),
+    iCOINr (>= 0.2.10),
     readxl,
     rlang,
     stats,
     tools,
     dplyr,
     glue,
-    COINr (>= 1.1.6),
+    COINr (>= 1.1.10),
     ggplot2,
     plotly,
     shiny,

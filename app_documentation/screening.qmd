@@ -31,4 +31,9 @@ The option to apply to non-zero values is similar but considers zeros instead of
 
 When the operation is run, a table will appear showing the modified data set. Any units that have been excluded will be highlighted in red. Summary statistics are also given showing the total number of included and excluded units.
 
-*Add example here with screenshot of table maybe?*
+
+![](figs/screening_3.png){width=100%}
+
+Notice that the table, like other tables in the app, can be copied or downloaded using the buttons. Most tables are also searchable with the search box, and sortable by clicking on the column headings.
+
+The result of the screening operation is that from this point on, the removed units will no longer be present in the analysis. However, you can change the screening parameters and click "Run" again to change the units that are screened out. Additionally, you can click "Remove operation" to remove the operation completely from the data workflow.

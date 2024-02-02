@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normalisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -314,7 +314,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="outliers_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Winsorised distribution outlier.</figcaption>
+<figcaption class="figure-caption">Winsorised distribution.</figcaption>
 </figure>
 </div>
 </div>
@@ -336,11 +336,11 @@ x' = \log(x-\min(x) + a)\\
 <section id="how" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="how"><span class="header-section-number">7.2</span> How</h2>
 <p>The outlier treatment algorithm is automatically implemented in the {composer} app. There are no parameters to adjust here, it is simply a choice of running the data treatment procedure, or not. To run data treatment, click the “Run” button.</p>
-<p><img src="figs/treat_1.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="figs/treat_1.png" class="img-fluid" style="width:100.0%"></p>
 <p>On running the treatment, the app will return a summary of which indicators had outliers before treatment (using the skew and kurtosis thresholds mentioned above), and any that still have outliers after treatment (since outlier treatment does not always successfully deal with all outliers).</p>
 <p>A table of data is also generated which highlights points that have been Winsorised or log-transformed, and summarises the data treatment applied to each indicator.</p>
 <p><img src="figs/treat_2.png" class="img-fluid" style="width:60.0%"></p>
-<p>Clicking on a column in the table will plot the indicator before and after treatment, showing how the data points have been changed. In the example below, four points have been Winsorised.</p>
+<p>Clicking on a column in the table will generate a scatter plot in the sidebar, showing the indicator before and after treatment, and illustrating how the data points have been changed. In the example below, four points have been Winsorised.</p>
 <p><img src="figs/treat_3.png" class="img-fluid" style="width:80.0%"></p>
 
 
@@ -588,7 +588,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./normalisation.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normalisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -285,13 +285,13 @@ ul.task-list li input[type="checkbox"] {
 <p>This is simply the product of each indicator to the power of its weight, all raised the the power of the inverse of the sum of the weights.</p>
 <p>The geometric mean is less compensatory than the arithmetic mean – low values in one indicator only partially substitute high values in others. For this reason, the geometric mean may sometimes be preferred when indicators represent “essentials”. An example might be quality of life: a longer life expectancy perhaps should not compensate severe restrictions on personal freedoms.</p>
 <p>Regardless of the aggregation method, the aggregation follows the structure of the index from the lowest level upwards. The indicators (at level 1) are first aggregated within their groups to give the aggregate scores at level 2. The aggregates at level 2 are then aggregated together within <em>their</em> groups to give the aggregates at level 3, and so on, up to the index level.</p>
-<p>At the aggregation step it is also possible to build in data availability restrictions, which is available in the FIND-CI app. By default, for a given unit, an aggregate can be given a score as long as at least one data point is available - the aggregation methods above take the mean only over the available points. For example, consider the indicator values of two units and their aggregate scores:</p>
+<p>At the aggregation step it is also possible to build in data availability restrictions, which is available in the {composer} app. By default, for a given unit, an aggregate can be given a score as long as at least one data point is available - the aggregation methods above take the mean only over the available points. For example, consider the indicator values of two units and their aggregate scores:</p>
 <ul>
 <li>Unit A has normalised indicator values Ind1 = 20, Ind2 = 35, Ind3 = 70, Ind4 = 18 and Ind5 = 12 for a given indicator group. The aggregate score is calculated as the equally weighted mean: 31.</li>
 <li>Unit B has missing data for four out of the same five indicators, but has a value for Ind4, which is 65. The aggregate score is calculated as the mean of the available points, which gives 65.</li>
 </ul>
 <p>Here, the second case can be quite misleading since the score is based on an indicator group with 80% missing data.</p>
-<p>To avoid this, you can set a data availability limit which is applied individually to each aggregation. For example, setting the limit at 0.6 would mean that a score is only calculated for units that have at least 60% data availability - if the availability is lower, for a given aggregation group, the score is treated as a missing value.</p>
+<p>To avoid this, you can set a data availability limit which is applied individually to each aggregation. For example, setting the limit at 0.6 would mean that, <em>for each unit and each aggregation</em>, a score is only calculated if the unit has at least 60% data availability (in that aggregation group) - if the availability is lower, the score is treated as a missing value.</p>
 <p>This safeguard is usually a sensible approach to avoid overstating what is actually known. Note that this is different from the overall unit screening described in <a href="screening.html"><span>Chapter&nbsp;5</span></a>, because it is applied to each aggregation group individually.</p>
 </section>
 <section id="how" class="level2" data-number="9.2">
@@ -303,7 +303,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="figs/compose_2.png" class="img-fluid" style="width:40.0%"></p>
 <p>The final input is the data availability threshold which was discussed in the previous section. If you don’t want to impose any data availability threshold, simply set this to zero. Consider also that if you have imputed your data, you will probably have no missing data points, so the data availability threshold will have no effect.</p>
 <p>Finally, click the “Run” button to generate the results. This will generate a summary table of the results, colour-formatted to help highlight high and low values. The table rows are sorted by the highest index score downwards, and the columns are sorted from the highest level downwards. You can sort the table by different columns by clicking on the column headers, and search for particular units using the search box.</p>
-<p><em>Anna maybe add a pic of a table from one of your examples here with some more text?</em></p>
+<p><img src="figs/compose_3.png" class="img-fluid" style="width:100.0%"></p>
 
 
 </section>
@@ -545,7 +545,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./normalisation.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

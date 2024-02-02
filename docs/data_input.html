@@ -153,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normalisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -284,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
 <p>The indicator data, as well as the index structure, weights, indicator directions and other metadata are input into the app via an Excel spreadsheet which must follow strict formatting requirements. The spreadsheet must have two tabs: one called “iData” which is the table of indicator data, and “iMeta” which is the table of metadata, including the index structure. Here we carefully walk through the requirements for building these two tables.</p>
 <section id="template-and-example" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="template-and-example"><span class="header-section-number">4.1</span> Template and example</h2>
-<p>Before explaining the specific requirements of the input spreadsheet, it is definitely worth downloading both the input template and the example input data, which are both available at the links in the “Overview” tab.</p>
+<p>Before explaining the specific requirements of the input spreadsheet, it is definitely worth downloading both the input template and the example input data, which are both available at the links in the “Data input” tab.</p>
 <p><img src="figs/data_input_1.png" class="img-fluid" style="width:50.0%"></p>
 <p>We recommend that you carefully read the instructions here, and compare to the example data set, which should give a good understanding of how to correctly format your input.</p>
 </section>
@@ -298,7 +298,7 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>The figure above shows the first few rows and columns of the example data. Notice first of all that each <strong>row</strong> is a unit (countries here), and each <strong>column</strong> describes things about each unit, such as its code, name, and also its values for each indicator. Let’s now go through each column in turn - we divide into required and optional columns.</p>
-<p><em>Anna: in your example data ideally the iCodes should be shorter, also because they cause issues on the framework plot. Can we possibly shorten them? Also: you have a denominator column but currently the app doesn’t support denomination. For the purposes of the example, could we either remove it or make it into Type = “Other” in iMeta?</em></p>
+<p><em>In this example data ideally the iCodes should be shorter, also because they cause issues on the framework plot. Can we possibly shorten them? Also: you have a denominator column but currently the app doesn’t support denomination. For the purposes of the example, could we either remove it or make it into Type = “Other” in iMeta?</em></p>
 <section id="required-columns" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="required-columns"><span class="header-section-number">4.2.1</span> Required columns</h3>
 <p>The <strong>uCode</strong> column should contain a short alphanumeric code for each unit. For example, if units are countries it is advisable to use <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">ISO alpha-3 codes</a> (as in the example data). Otherwise, some requirements for these codes:</p>
@@ -344,7 +344,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="upload" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="upload"><span class="header-section-number">4.4</span> Upload</h2>
 <p>With your input data correctly prepared, you can now upload it to the app. On the “Overview tab”, select the “Upload data” tab in the sidebar and browse to the location of your input data on your computer by clicking the “Browse” button. Having selected the file, click the “Load data” button.</p>
-<p><img src="figs/data_input_4.png" class="img-fluid" style="width:50.0%"></p>
 <p>At this point, either the data upload will be successful or not. Here’s what to do.</p>
 <section id="successful" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="successful"><span class="header-section-number">4.4.1</span> Successful</h3>
@@ -359,12 +358,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="unsuccessful" class="level3" data-number="4.4.2">
 <h3 data-number="4.4.2" class="anchored" data-anchor-id="unsuccessful"><span class="header-section-number">4.4.2</span> Unsuccessful</h3>
-<p>It is not unlikely that you will have made a mistake the first time that you try to upload your data. Don’t worry! The input is a little complex and it is easy to make errors.</p>
-<p><em>NOTE: this section needs completing because at the moment the app crashes if the input is wrong. Need to improve app here and then finish this</em></p>
+<p>It is not unlikely that you will have made a mistake the first time that you try to upload your data. Don’t worry! The input is a little complex and it is easy to make errors. The app will try to return helpful error messages, which should point to common problems and give the corresponding solutions.</p>
 <p>Here are some common problems:</p>
 <ul>
 <li>Mismatch between iMeta and iData tables: remember that codes are <em>case-sensitive</em>, and cross check very carefully to ensure that all columns names from iData are in iMeta (excluding uCode and uName), and all iCodes <em>except</em> those with Type = “Aggregate” are columns in iData.</li>
-<li>Non-numeric data: make sure each column of data is actually formatted as numeric. Even it looks like a number, Excel may have interpreted it as text. In Excel, a cell formatted as a number will be right-aligned, whereas text is left-aligned (see below).</li>
+<li>Non-numeric data: make sure each column of data is actually formatted as numeric. Even it looks like a number, Excel may have interpreted it as text. In Excel, by default, a cell formatted as a number will be right-aligned, whereas text is left-aligned (see below).</li>
 </ul>
 <p><img src="figs/data_input_7.png" class="img-fluid" style="width:30.0%"></p>
 <ul>

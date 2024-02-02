@@ -1,16 +1,15 @@
-# Normalisation {#sec-normalisation}
+# Normalise {#sec-normalisation}
 
-The last tab in the data operations group is normalisation. Normalisation involves bringing indicators onto a common scale so they can be aggregated. Consider that some indicators may have values in the order of billions (GDP), and others may be values less than one. In order to make them comparable, they are normalised, using one of various possible methods. In the normalisation step, the indicator is also reversed if it has a negative direction.
+Before calculating the index results we have to normalise our indicators. Normalisation involves bringing indicators onto a common scale so they can be aggregated. Consider that some indicators may have values in the order of billions (GDP), and others may be values less than one. In order to make them comparable, they are normalised, using one of various possible methods. In the normalisation step, the indicator is also reversed if it has a negative direction.
 
 Normalisation is mandatory in the {composer} app: it is not possible to calculate the index scores unless the normalisation has been run.
 
 ## About
 
-*Anna in your example I can't see any indicators with negative direction - even though perhaps some look like they ought to be? In any case I generate artifical examples here which you can replace.*
 
 ### Linear methods
 
-There are several normalisation methods available in the FIND-CI app. The default is called "min-max", and it simply rescales an indicator onto a specified interval with a minimum value $l$, a maximum value $u$, and consequently a range $u-l$. By default in the app, indicators are scaled between 0 and 100.
+There are several normalisation methods available in the {composer} app. The default is called "min-max", and it simply rescales an indicator onto a specified interval with a minimum value $l$, a maximum value $u$, and consequently a range $u-l$. By default in the app, indicators are scaled between 0 and 100.
 
 $$ x' = \frac{ x - x_{\text{min}} }{ x_{\text{max}} - x_{\text{min}} } \times (u-l) + l$$
 
@@ -131,7 +130,7 @@ Normalisation in the app is straightforward. Siimply select the normalisation me
 
 If you select min-max or z-score, you will additionally have the option to set the parameters (upper/lower bounds, and mean/standard deviation, respectively). The other two methods have no parameters to set.
 
-Clicking "Run" will apply the normalisation method to the data, and generates a table with the normalised data set. As in other tabs, clicking on a column in the table will show a scatter plot of the indicator, before and after normalisation.
+Clicking "Run" will apply the normalisation method to the data, and generates a table with the normalised data set. As in other tabs, clicking on a column in the table will show a scatter plot of the indicator in the sidebar, before and after normalisation.
 
 ![](figs/normalisation_2.png){width=80%}
 

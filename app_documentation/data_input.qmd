@@ -6,7 +6,7 @@ The indicator data, as well as the index structure, weights, indicator direction
 
 ## Template and example
 
-Before explaining the specific requirements of the input spreadsheet, it is definitely worth downloading both the input template and the example input data, which are both available at the links in the "Overview" tab.
+Before explaining the specific requirements of the input spreadsheet, it is definitely worth downloading both the input template and the example input data, which are both available at the links in the "Data input" tab.
 
 ![](figs/data_input_1.png){width=50%}
 
@@ -20,7 +20,7 @@ The first of the two tables to input into the app is called "iData", which is sh
 
 The figure above shows the first few rows and columns of the example data. Notice first of all that each **row** is a unit (countries here), and each **column** describes things about each unit, such as its code, name, and also its values for each indicator. Let's now go through each column in turn - we divide into required and optional columns.
 
-*Anna: in your example data ideally the iCodes should be shorter, also because they cause issues on the framework plot. Can we possibly shorten them? Also: you have a denominator column but currently the app doesn't support denomination. For the purposes of the example, could we either remove it or make it into Type = "Other" in iMeta?*
+*In this example data ideally the iCodes should be shorter, also because they cause issues on the framework plot. Can we possibly shorten them? Also: you have a denominator column but currently the app doesn't support denomination. For the purposes of the example, could we either remove it or make it into Type = "Other" in iMeta?*
 
 ### Required columns
 
@@ -78,8 +78,6 @@ It is important to carefully cross-check between the iData and iMeta tables, mak
 
 With your input data correctly prepared, you can now upload it to the app. On the "Overview tab", select the "Upload data" tab in the sidebar and browse to the location of your input data on your computer by clicking the "Browse" button. Having selected the file, click the "Load data" button.
 
-![](figs/data_input_4.png){width=50%}
-
 At this point, either the data upload will be successful or not. Here's what to do.
 
 ### Successful
@@ -102,14 +100,12 @@ From here, if you are happy with the details reported by the app, you can move t
 
 ### Unsuccessful
 
-It is not unlikely that you will have made a mistake the first time that you try to upload your data. Don't worry! The input is a little complex and it is easy to make errors.
-
-*NOTE: this section needs completing because at the moment the app crashes if the input is wrong. Need to improve app here and then finish this*
+It is not unlikely that you will have made a mistake the first time that you try to upload your data. Don't worry! The input is a little complex and it is easy to make errors. The app will try to return helpful error messages, which should point to common problems and give the corresponding solutions.
 
 Here are some common problems:
 
 - Mismatch between iMeta and iData tables: remember that codes are *case-sensitive*, and cross check very carefully to ensure that all columns names from iData are in iMeta (excluding uCode and uName), and all iCodes *except* those with Type = "Aggregate" are columns in iData.
-- Non-numeric data: make sure each column of data is actually formatted as numeric. Even it looks like a number, Excel may have interpreted it as text. In Excel, a cell formatted as a number will be right-aligned, whereas text is left-aligned (see below).
+- Non-numeric data: make sure each column of data is actually formatted as numeric. Even it looks like a number, Excel may have interpreted it as text. In Excel, by default, a cell formatted as a number will be right-aligned, whereas text is left-aligned (see below).
 
 ![](figs/data_input_7.png){width=30%}
 

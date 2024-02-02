@@ -50,7 +50,7 @@ Here, the skew and kurtosis thresholds are used as simple indicators of distribu
 
 ```{r}
 #| echo: false
-#| fig-cap: "Winsorised distribution outlier."
+#| fig-cap: "Winsorised distribution."
 
 x$x[nrow(x)] <- max(x$x[1:(nrow(x)-1)])
 
@@ -103,7 +103,7 @@ This shows that the initially skewed distribution with outliers has been transfo
 
 The outlier treatment algorithm is automatically implemented in the {composer} app. There are no parameters to adjust here, it is simply a choice of running the data treatment procedure, or not. To run data treatment, click the "Run" button.
 
-![](figs/treat_1.png){width=60%}
+![](figs/treat_1.png){width=100%}
 
 On running the treatment, the app will return a summary of which indicators had outliers before treatment (using the skew and kurtosis thresholds mentioned above), and any that still have outliers after treatment (since outlier treatment does not always successfully deal with all outliers).
 
@@ -111,6 +111,6 @@ A table of data is also generated which highlights points that have been Winsori
 
 ![](figs/treat_2.png){width=60%}
 
-Clicking on a column in the table will plot the indicator before and after treatment, showing how the data points have been changed. In the example below, four points have been Winsorised.
+Clicking on a column in the table will generate a scatter plot in the sidebar, showing the indicator before and after treatment, and illustrating how the data points have been changed. In the example below, four points have been Winsorised.
 
 ![](figs/treat_3.png){width=80%}

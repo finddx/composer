@@ -39,7 +39,7 @@ screening_ui <- function(id, sidebar_width) {
 
       # run
       actionButton(inputId = ns("i_unitscreening_btn"), label = "Run"),
-      actionButton(inputId = ns("i_undo"), label = "Undo")
+      actionButton(inputId = ns("i_undo"), label = "Remove operation")
     ),
 
 

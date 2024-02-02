@@ -15,6 +15,8 @@ normalisation_ui <- function(id, sidebar_width) {
       "Bring indicators onto a common scale by normalising using the method selected.
     Click on table columns to visualise indicators before and after normalisation.",
 
+      "Normalisation is a required step before calculating index results.",
+
       selectInput(
         ns("i_normalisation_method"),
         "Normalisation method",

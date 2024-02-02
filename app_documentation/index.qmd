@@ -29,8 +29,6 @@ run_gui()
 
 As a Shiny app, the app will open in your web browser and acts as an interactive GUI.
 
-*Add FIND acknowledgement*
-
 The rest of this page gives some general information about the app and composite indicators. If you want to get started quickly, go straight to @sec-overview. Detailed documentation on each tab of the app starts at @sec-datainput.
 
 ## Composite indicators

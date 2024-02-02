@@ -153,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./normalisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Normalise</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -269,26 +269,39 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Maps and bar charts can be used to visualise the scores of the index, or any indicator or aggregate. Maps give a quick overview of spatial patterns (for example, which continents have higher or lower scores), whereas bar charts are more useful for giving a precise comparison of scores.</p>
+<p>Maps and bar charts can be used to visualise the scores of the index, or any indicator or aggregate. Maps give a quick overview of spatial patterns (for example, which continents have higher or lower scores), whereas bar charts are more useful for giving a precise comparison and ordering of scores.</p>
 <section id="maps" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="maps"><span class="header-section-number">10.1</span> Maps</h2>
-<p>Maps can be generated in the “Map” sub-tab in the “Explore indicator” tab group. As mentioned elsewhere, maps can only be plotted if your input data is at the country level and uses ISO alpha-3 codes as its “iCodes” (see again <span class="quarto-unresolved-ref">?sec-data_input</span>). Otherwise, the map will be disabled.</p>
+<p>Maps can be generated in the “Map” sub-tab in the “Explore” dropdown menu in the navbar. As mentioned elsewhere, maps can only be plotted if your input data is at the country level and uses ISO alpha-3 codes as its “iCodes” (see again <a href="data_input.html"><span>Chapter&nbsp;4</span></a>). Otherwise, the map will be disabled.</p>
 <p>To plot a map, simply select the indicator or aggregate of interest from the dropdown, and click “Run”. The dropdown menu here is sorted by the highest level downwards.</p>
 <p><img src="figs/map_bar_2.png" class="img-fluid" style="width:40.0%"></p>
 <p>This will generate a <a href="https://en.wikipedia.org/wiki/Choropleth_map">choropleth map</a> which is a world map where the colour of each country represents its score or value in the indicator.</p>
-<p><img src="figs/map_bar_1.png" class="img-fluid" style="width:70.0%"></p>
-<p>The map is interactive, so hovering over a country will give details about its score. Hovering over the legend will highlight the countries in that score group, and clicking on legend entries will exclude or include countries within that range. The map can be zoomed and panned by using the mouse scroll wheel and by clicking and dragging, respectively.</p>
-<p><em>Anna: not sure if you want to add any disclaimers about maps and borders here.</em></p>
+<p><img src="figs/map_bar_1.png" class="img-fluid" style="width:100.0%"></p>
+<p>The map is interactive, so hovering over a country will give details about its score. Hovering over the legend will highlight the countries in that score group, and clicking on legend entries will exclude or include countries within that range. The map can be zoomed and panned by using the mouse scroll wheel and by clicking and dragging, respectively. The map image may also be downloaded as an image using the download icon in the top right of the map window. You can also expand the plot window by clicking the expand button in the bottom right.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Country borders are disputed in some areas can be politically sensitive. Always be aware of the environment that maps are presented in!</p>
+</div>
+</div>
 </section>
 <section id="bar-chart" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="bar-chart"><span class="header-section-number">10.2</span> Bar chart</h2>
-<p>The bar chart displays the same kind of information, but without the spatial component. On the “Bar” sub-tab, select the indicator or aggregate to plot, then click “Run”.</p>
+<p>The bar chart displays the same kind of information, but wsithout the spatial component. On the “Bar” sub-tab, select the indicator or aggregate to plot, then click “Run”.</p>
 <p><img src="figs/map_bar_3.png" class="img-fluid" style="width:40.0%"></p>
 <p>The resulting bar chart in the main window will be sorted from the highest score downwards. The bar chart is also interactive and can be zoomed and panned.</p>
 <p><img src="figs/map_bar_4.png" class="img-fluid" style="width:100.0%"></p>
 <p>Note that if an indicator is selected to plot (i.e.&nbsp;from level 1), the bar chart will display the raw data, as it was input into the app. If an aggregate is selected, i.e.&nbsp;from level 2 upwards, then it will be displayed as a score. In this case, it is also possible to display the component scores for each country, as “chunks” of each bar, by clicking the “Show component scores” switch.</p>
 <p><img src="figs/map_bar_5.png" class="img-fluid" style="width:100.0%"></p>
 <p>In the example here, this gives an idea of what is contributing to each score. Clicking on the legend entries will also add or remove each group from the plot.</p>
+<p>The remaining switches allow the bar chart to be flipped to vertical (this can be be useful depending on the number of units and the length of names), and to toggle between unit names and unit codes. You can also select to plot a subset of the units, for example top 50, which can be useful when the number of units is quite large.</p>
 
 
 </section>

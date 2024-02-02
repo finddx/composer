@@ -26,14 +26,14 @@ The geometric mean is less compensatory than the arithmetic mean -- low values i
 
 Regardless of the aggregation method, the aggregation follows the structure of the index from the lowest level upwards. The indicators (at level 1) are first aggregated within their groups to give the aggregate scores at level 2. The aggregates at level 2 are then aggregated together within *their* groups to give the aggregates at level 3, and so on, up to the index level.
 
-At the aggregation step it is also possible to build in data availability restrictions, which is available in the FIND-CI app. By default, for a given unit, an aggregate can be given a score as long as at least one data point is available - the aggregation methods above take the mean only over the available points. For example, consider the indicator values of two units and their aggregate scores:
+At the aggregation step it is also possible to build in data availability restrictions, which is available in the {composer} app. By default, for a given unit, an aggregate can be given a score as long as at least one data point is available - the aggregation methods above take the mean only over the available points. For example, consider the indicator values of two units and their aggregate scores:
 
 * Unit A has normalised indicator values Ind1 = 20, Ind2 = 35, Ind3 = 70, Ind4 = 18 and Ind5 = 12 for a given indicator group. The aggregate score is calculated as the equally weighted mean: 31.
 * Unit B has missing data for four out of the same five indicators, but has a value for Ind4, which is 65. The aggregate score is calculated as the mean of the available points, which gives 65.
 
 Here, the second case can be quite misleading since the score is based on an indicator group with 80% missing data.
 
-To avoid this, you can set a data availability limit which is applied individually to each aggregation. For example, setting the limit at 0.6 would mean that a score is only calculated for units that have at least 60% data availability - if the availability is lower, for a given aggregation group, the score is treated as a missing value.
+To avoid this, you can set a data availability limit which is applied individually to each aggregation. For example, setting the limit at 0.6 would mean that, *for each unit and each aggregation*, a score is only calculated if the unit has at least 60% data availability (in that aggregation group) - if the availability is lower, the score is treated as a missing value.
 
 This safeguard is usually a sensible approach to avoid overstating what is actually known. Note that this is different from the overall unit screening described in @sec-screening, because it is applied to each aggregation group individually.
 
@@ -53,6 +53,5 @@ The final input is the data availability threshold which was discussed in the pr
 
 Finally, click the "Run" button to generate the results. This will generate a summary table of the results, colour-formatted to help highlight high and low values. The table rows are sorted by the highest index score downwards, and the columns are sorted from the highest level downwards. You can sort the table by different columns by clicking on the column headers, and search for particular units using the search box.
 
-*Anna maybe add a pic of a table from one of your examples here with some more text?*
-
+![](figs/compose_3.png){width=100%}
 

@@ -1,19 +1,19 @@
 # Bubble chart {#sec-bubble}
 
-The bubble chart, which is found in the "Bubble" sub-tab of the "Explore" tab group, is a powerful tool to compare the relationships between indicators and aggregates.
+The bubble chart, which is found in the "Bubble" sub-tab of the "Explore" tab group, is a powerful tool to compare the relationships between indicators and aggregates. Effectively it is a scatter plot between two variables, but can also map a third variable to the size of each point, and a grouping variable to the point colours. Note that colour mapping will only be enabled if you have entered a grouping variable with your input data.
 
-*More details explaining the purpose*
-
-The sidebar gives various controls. The first four dropdown menus control which indicators or aggregates to display on the plot.
+The sidebar gives various controls. The first four dropdown menus control which indicators or aggregates to display on the plot: the x and y variables, plus size and colour.
 
 ![](figs/bubble_1.png){width=40%}
 
-The bubble chart is an "enhanced" scatter plot. You can select any indicator or aggregate to plot on the x and y axes, but also each point can be sized and coloured by third and fourth variables. After selecting the variables of interest, click the "Run" button.
+After selecting the variables of interest, click the "Run" button. The plot will show the selected variables, and will also include two "threshold" lines which can be moved using the settings in the side panel. These are intended to be used to illustrate units that have passed certain significant thresholds (the meaning will be dependent on the selected indicators). 
 
-*Anna I leave to you to pad this out?*
+![](figs/bubble_3.png){width=100%}
 
-![](figs/bubble_2.png){width=40%}
+The bubble plot is interactive: hovering over points will momentarily filter to points of the same group. Clicking on the legend entries also allows to filter in/out each group. You can also zoom in and out and download the image using the controls in the top right.
 
-The other controls in the sidebar allow further adjustments. The two "Threshold" boxes can be used to draw horizontal and vertical lines on the plot which can represent thresholds.
+Further controls on the bubble plot include:
 
-It is also possible to filter units based on grouping variables (see again @sec-datainput), and to highlight selected countries.
+- Switches to enable log axes for the x and y axes
+- A switch to enable and disable the threshold lines and set their values
+- A "Highlight units" box, which can be used to select a subset of units to highlight on the plot

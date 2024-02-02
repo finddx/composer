@@ -33,7 +33,7 @@ imputation_ui <- function(id, sidebar_width) {
       ),
 
       actionButton(ns("i_imputation_btn"), "Run"),
-      actionButton(inputId = ns("i_undo"), label = "Undo")
+      actionButton(inputId = ns("i_undo"), label = "Remove operation")
 
     ),
 
@@ -65,7 +65,7 @@ imputation_ui <- function(id, sidebar_width) {
         full_screen = TRUE,
         card_header("Imputed data"),
         card_body(
-          p(id = ns("placeholder_text"), "Run screening first..."),
+          p(id = ns("placeholder_text"), "Run imputation first..."),
           DT::dataTableOutput(ns("dataImputed"))
         )
       )
@@ -216,6 +216,14 @@ f_imputation <- function(coin, dset = NULL, imputation_method, imputation_group 
     }
 
     stopifnot(imputation_group %in% groups_available)
+
+    # issue warning if group has NAs in it
+    group_vector <- coin$Meta$Unit[[imputation_group]]
+    if(any(is.na(group_vector))){
+      send_input_warning(
+        paste0("Missing values detected in selected group variable ", imputation_group, ". This may result in missing values still present after imputation.")
+      )
+    }
 
   }
 

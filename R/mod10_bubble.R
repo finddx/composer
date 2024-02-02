@@ -26,6 +26,7 @@ bubble_ui <- function(id, sidebar_width) {
       input_switch(ns("i_indicator_explore_log_y"), label = "Log y-axis", value = FALSE),
 
       # threshold settings
+      input_switch(ns("enable_lines"), label = "Enable threshold lines", value = FALSE),
       numericInput(ns("i_indicator_explore_threshold_x"), "Threshold for x-axis", value = NULL),
       numericInput(ns("i_indicator_explore_threshold_y"), "Threshold for y-axis", value = NULL),
 
@@ -75,13 +76,40 @@ bubble_server <- function(id, r_share, coin) {
 
       updateSelectInput(inputId = "i_indicator_explore_bubble_x", choices = ind_group_choices)
       updateSelectInput(inputId = "i_indicator_explore_bubble_y", choices = ind_group_choices, selected = ind_group_choices[[2]])
-      updateSelectInput(inputId = "i_indicator_explore_bubble_size", choices = ind_group_choices, selected = ind_group_choices[[3]])
 
-      # TODO deal with possibility of no groups
+      # POINT SIZE
+      updateSelectInput(inputId = "i_indicator_explore_bubble_size",
+                        choices = c("-- Don't map to size --", ind_group_choices))
+
+      # POINT GROUPING (COLOUR)
       group_names <- f_get_group_list(coin())
-      updateSelectInput(inputId = "i_indicator_explore_bubble_iCode_group", choices = group_names, selected = group_names)
+      if(is.null(group_names)){
+        updateSelectInput(inputId = "i_indicator_explore_bubble_iCode_group", label = "<No groups found in input data>")
+        shinyjs::disable("i_indicator_explore_bubble_iCode_group")
+      } else {
+        shinyjs::enable("i_indicator_explore_bubble_iCode_group")
+        updateSelectInput(inputId = "i_indicator_explore_bubble_iCode_group", choices = c("-- Don't group --", group_names))
+      }
 
-    }) |> bindEvent(r_share$results_calculated)
+      # Unit highlighting
+      df_agg <- get_dset(coin(), dset = "Aggregated", also_get = "uName")
+      l_units <- as.list(df_agg$uCode)
+      names(l_units) <- df_agg$uName
+      updateSelectInput(inputId = "i_marked_country_unit", choices = l_units)
+
+    }) |>
+      bindEvent(r_share$results_calculated)
+
+    # disable/enable line boxes
+    observeEvent(input$enable_lines, {
+      if(input$enable_lines){
+        shinyjs::enable("i_indicator_explore_threshold_x")
+        shinyjs::enable("i_indicator_explore_threshold_y")
+      } else {
+        shinyjs::disable("i_indicator_explore_threshold_x")
+        shinyjs::disable("i_indicator_explore_threshold_y")
+      }
+    })
 
     # bubble thresholds - get correct scales for X
     observeEvent(input$i_indicator_explore_bubble_x,{
@@ -130,18 +158,37 @@ bubble_server <- function(id, r_share, coin) {
       axis_x <- if(input$i_indicator_explore_log_x) "log" else "value"
       axis_y <- if(input$i_indicator_explore_log_y) "log" else "value"
 
+      # point colour grouping
+      enable_groups <- !(input$i_indicator_explore_bubble_iCode_group == "-- Don't group --")
+      iCode_group <- if(enable_groups){
+        input$i_indicator_explore_bubble_iCode_group
+      } else {
+        NULL
+      }
+
+      # point size mapping
+      enable_size <- !(input$i_indicator_explore_bubble_size == "-- Don't map to size --")
+      iCode_size <- if(enable_size){
+        input$i_indicator_explore_bubble_size
+      } else {
+        NULL
+      }
+
       f_plot_bubble(
         coin(),
         dset = "Aggregated",
         iCode_x = input$i_indicator_explore_bubble_x,
         iCode_y = input$i_indicator_explore_bubble_y,
-        iCode_size = input$i_indicator_explore_bubble_size,
+        iCode_size = iCode_size,
         threshold_x = input$i_indicator_explore_threshold_x,
         threshold_y = input$i_indicator_explore_threshold_y,
-        iCode_group = input$i_indicator_explore_bubble_iCode_group,
+        iCode_group = iCode_group,
         marked_country_unit = input$i_marked_country_unit,
         axis_x = axis_x,
-        axis_y = axis_y
+        axis_y = axis_y,
+        enable_groups = enable_groups,
+        enable_size = enable_size,
+        enable_lines = input$enable_lines
       )
     })  |>
       bindEvent(input$i_explore_bubble_submit_btn)
@@ -172,15 +219,27 @@ f_plot_bubble <- function(coin,
                           iCode_group = NULL,
                           marked_country_unit = NULL,
                           axis_x = "value",
-                          axis_y = "value"
+                          axis_y = "value",
+                          enable_size = TRUE,
+                          enable_groups = TRUE,
+                          enable_lines = FALSE
 ) {
 
 
   stopifnot(!is.null(iCode_x))
 
-  # ensure group code is valid
-  iCodes_groups <- f_get_group_codes(coin)
-  stopifnot(iCode_group %in% iCodes_groups)
+  if(enable_groups){
+
+    # check groups in coin
+    iCodes_groups <- f_get_group_codes(coin)
+
+    if(is.null(iCodes_groups)){
+      enable_groups <- FALSE # cannot group, no groups
+    } else {
+      stopifnot(iCode_group %in% iCodes_groups)
+    }
+  }
+
 
   colors <- c("#fdee65",  pal_find()[2], pal_find()[1])
 
@@ -218,23 +277,38 @@ f_plot_bubble <- function(coin,
   # echarts4r doesn't seem to.
   .data <- NULL
 
+  # point size scaling function
+  # min and max here are min/max point sizes
+  point_scaler <- function(x){COINr::n_minmax(x, l_u = c(3,40))}
+
+  if(enable_groups){
+    bubble_df <- dplyr::group_by(bubble_df, .data[[iCode_group]])
+  }
+
+  if(enable_size){
+    sizename <- COINr::icodes_to_inames(coin, iCode_size)
+    symbol_size <- 1
+  } else {
+    sizename <- NULL
+    symbol_size <- 10
+  }
+
   p <-
     bubble_df |>
-    dplyr::group_by(.data[[iCode_group]]) |>
     e_charts_( {{ iCode_x }} ) |>
     e_scatter_(
       {{ iCode_y }},
-      scale = NULL,
+      scale = point_scaler,
       country_label = FALSE,
       emphasis = list(focus = "series", blurScope = "coordinateSystem"),
       opacity = 0.4,
       bind = "uName",
       itemStyle = list(borderWidth = 1, borderColor = "black"),
       size = {{ iCode_size }},
-      symbol_size = 1,
+      symbol_size = symbol_size,
       animation = TRUE
     ) |>
-    e_legend(show = TRUE) |>
+    e_legend(show = enable_groups) |>
     e_grid(left = "50px", right = "60px", top = "85px", bottom = "90px") |>
     e_animation(show = F) |>
     e_toolbox() |>
@@ -255,36 +329,40 @@ f_plot_bubble <- function(coin,
       nameGap = 35#,
       #max = 100
     ) |>
-    e_mark_line(
-      data = list(
-        yAxis = threshold_y,
-        lineStyle = list(color = pal_find(2)[2], width = 2, type = "solid")
-      ),
-      symbol = "none",
-      silent = TRUE,
-      title = "",
-      animation = FALSE,
-      title_position = "left"
-    ) |>
-    e_mark_line(
-      data = list(
-        xAxis = threshold_x,
-        lineStyle = list(color = pal_find(2)[2], width = 2, type = "solid")
-      ),
-      symbol = "none",
-      silent = TRUE,
-      title = "",
-      animation = FALSE,
-      title_position = "left"
-    ) |>
     e_grid(height = "80%") |>
-    #add_find_logo() |>
     e_theme_custom(pal_find_to_echarts()) |>
     e_tooltip(formatter = htmlwidgets::JS(tooltip_JS(
       xname = COINr::icodes_to_inames(coin, iCode_x),
       yname = COINr::icodes_to_inames(coin, iCode_y),
-      sizename = COINr::icodes_to_inames(coin, iCode_size)
+      sizename = sizename
     )))
+
+  # turn on lines
+  if(enable_lines){
+    p <- p |>
+      e_mark_line(
+        data = list(
+          yAxis = threshold_y,
+          lineStyle = list(color = pal_find(2)[2], width = 2, type = "solid")
+        ),
+        symbol = "none",
+        silent = TRUE,
+        title = "",
+        animation = FALSE,
+        title_position = "left"
+      ) |>
+      e_mark_line(
+        data = list(
+          xAxis = threshold_x,
+          lineStyle = list(color = pal_find(2)[2], width = 2, type = "solid")
+        ),
+        symbol = "none",
+        silent = TRUE,
+        title = "",
+        animation = FALSE,
+        title_position = "left"
+      )
+  }
 
   add_marked_country_unit_to_plot <- function(p, marked_country_unit_i) {
 
@@ -312,20 +390,30 @@ f_plot_bubble <- function(coin,
       )
   }
 
-  p <- Reduce(add_marked_country_unit_to_plot, marked_country_unit, p, .data)
+  p <- Reduce(add_marked_country_unit_to_plot, marked_country_unit, p)
 
   p
 
 }
 
-tooltip_JS <- function(xname, yname, sizename){
-  glue::glue(
-    "function(params){{",
-    "return('<strong>' + params.name + ",
-    "'</strong><br />{xname}: ' + params.value[0] + ",
-    "'<br />{yname}: ' + params.value[1] + ",
-    "'<br />{sizename}: ' + params.value[2])}}"
-  )
+tooltip_JS <- function(xname, yname, sizename = NULL){
+
+  if(is.null(sizename)){
+    glue::glue(
+      "function(params){{",
+      "return('<strong>' + params.name + ",
+      "'</strong><br />{xname}: ' + params.value[0] + ",
+      "'<br />{yname}: ' + params.value[1])}}"
+    )
+  } else {
+    glue::glue(
+      "function(params){{",
+      "return('<strong>' + params.name + ",
+      "'</strong><br />{xname}: ' + params.value[0] + ",
+      "'<br />{yname}: ' + params.value[1] + ",
+      "'<br />{sizename}: ' + params.value[2])}}"
+    )
+  }
 }
 
 # Function converts a character vector of hex colour codes from the pal_find()
