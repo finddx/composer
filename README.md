@@ -2,16 +2,6 @@
 
 The {composer} package is a Shiny app which provides an easy interface for building composite indicators using any data set. Users can visualise and explore results in depth, and download figures and reports.
 
-![](app_documentation/figs/bubble_3.png)
-
-![](app_documentation/figs/correlations_3.png)
-
-![](app_documentation/figs/map_bar_1.png)
-
-![](app_documentation/figs/profiles_1.png)
-
-![](app_documentation/figs/screening_3.png)
-
 :blue_book: Full documentation for the package and app is available at <https://finddx.github.io/composer/>
 
 At the moment, in order to run the app you will have to have R installed, then first install the package:
@@ -59,6 +49,20 @@ The {composer} app includes the following features:
 -   Downloadable unit profiles
 -   Interactive reweighting
 -   Sensitivity analysis on assumptions, checking the effects of removing indicators and indicator groups
+
+## Screenshots
+
+Some screenshots of the app:
+
+![](app_documentation/figs/bubble_3.png)
+
+![](app_documentation/figs/correlations_3.png)
+
+![](app_documentation/figs/map_bar_1.png)
+
+![](app_documentation/figs/profiles_1.png)
+
+![](app_documentation/figs/screening_3.png)
 
 ## Methodology
 
