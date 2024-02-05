@@ -17,20 +17,24 @@ reweighting_ui <- function(id, sidebar_width) {
       weights in your index, save them with a name and go to the Compose tab to regenerate
       the full results there, selecting the new weight set.",
 
-      numericInput(
-        ns("i_weight_slider_level"),
-        label = "Select framework level to adjust weights",
-        value = 3, min = 1, max = 3),
+      card(
+        card_header("Weights"),
+        fill = FALSE,
 
-      actionButton(ns("i_regenerate_button"), label = "Recalculate", icon = icon("calculator")),
+        card_body(
+          numericInput(
+            ns("i_weight_slider_level"),
+            label = "Select framework level to adjust weights",
+            value = 3, min = 1, max = 3),
+
+          uiOutput(ns("o_weights_sliders")),
+          actionButton(ns("i_regenerate_button"), label = "Recalculate", icon = icon("calculator"))
+        )
+      ),
 
       strong("Save weights"),
       textInput(ns("i_weight_set_name"), "Enter name to save weight set (you must click 'Recalculate' first):"),
-      actionButton(ns("i_save_weights_button"), label = "Save"),
-
-      strong("Weights"),
-
-      uiOutput(ns("o_weights_sliders"))
+      actionButton(ns("i_save_weights_button"), label = "Save")
 
     ),
 

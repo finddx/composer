@@ -6,12 +6,10 @@ The unit profiles tab generates a summary report for any selected unit (often co
 
 At the top of the generated unit profile, the index score and rank are reported in value boxes. This is followed by a bar chart plotting the index scores, and highlighting the position of the selected unit. Using the side panel controls, you can control whether the bar chart shows the underlying component scores of the index, and whether to show the unit codes or names.
 
-![](figs/profiles_2.png){width="100%"}
-
-The next table down gives a summary of the scores and ranks of the selected unit at the index level and the underlying aggregate levels.
+The table on the right side gives a summary of the scores and ranks of the selected unit at the index level and the underlying aggregate levels.
 
 ![](figs/profiles_3.png){width="100%"}
 
 Finally, the "Top ranking" and "Bottom ranking" tables report the five highest-ranking and lowest-ranking indicators of the selected unit. These can be viewed as the (relative) "strengths" and "weaknesses" of the unit respectively.
 
-At the bottom of the report there is a button which allows the report to be downloaded as an HTML document. This is a standalone but interactive HTML file which can be shared and viewed in any browser.
+In the sidebar there is a button which allows the report to be downloaded as an HTML document. This is a standalone but interactive HTML file which can be shared and viewed in any browser.

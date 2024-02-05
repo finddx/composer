@@ -1,9 +1,5 @@
 # Welcome
 
-::: callout-warning
-This documentation is being developed and updated. Screenshots may show older versions of the app and there will be gaps in the text.
-:::
-
 Welcome to the documentation for the {composer} app. The {composer} app provides an easy interface for building composite indicators using any data set. Users can visualise and explore results in depth, and download figures and reports.
 
 {composer} is a Shiny app which is wrapped in an R package. At the moment, in order to run the app you will have to have R installed, then first install the package:
@@ -71,6 +67,10 @@ Throughout this book we will use the following terms:
 -   *Units* are the set of "things" that we want to compare and possibly rank. Often units are countries, but they could also be regions, cities or organisations, which is why we use "units" here.
 -   *Indicators* are measured variables which we use to compare units.
 -   A *composite indicator* is a mathematical aggregation of a set of indicators into one composite measure, which aims to summarise the indicator set as well as possible.
+
+## Development and contribution
+
+{composer} was developed over 2023-2024 and (at the time of writing in Feb 2024) is in an early release phase. If you find a bug in the app, or have a feature request, please [open an issue on GitHub](https://github.com/finddx/composer/issues). Collaboration and contribution are welcome: if you wish to contribute please fork the GitHub repo, make any changes and make a pull request. Feel free to discuss on the issues page, or [contact us](mailto:william.becker@bluefoxdata.eu).
 
 ## Acknowledgements
 
