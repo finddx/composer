@@ -1,5 +1,6 @@
 
 # function maps the selected tab and sub-tab to the relevant documentation page
+# NOTE in the composer version of the app this is now defunct
 get_doc_page <- function(input){
 
   pagestring <- switch(

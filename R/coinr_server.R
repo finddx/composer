@@ -42,7 +42,6 @@ coinr_server <- function(input, output, session) {
   # add paths to resources for the app (files to download etc.)
   # This makes files in package source inst/app/www available to the app at www/
   addResourcePath('www', system.file('app/www', package = "composer"))
-  addResourcePath('docs', system.file('docs', package = "composer"))
 
   # Documentation
   output$docu <- renderUI({
