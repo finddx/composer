@@ -225,9 +225,17 @@ f_style_norm_table <- function(df_normalised){
       dom = 'Bfrtip',
       scrollX = TRUE,
       buttons =
-        list('copy', list(
+        list("copy", list(
           extend = 'collection',
-          buttons = c('csv', 'excel', 'pdf'),
+          buttons = list(list(extend = 'csv',
+                              filename = 'composer_normalised_data',
+                              title = "Normalised"), # note: any spaces here result in weird output!
+                         list(extend = 'excel',
+                              filename = 'composer_normalised_data',
+                              title = "Normalised"),
+                         list(extend = 'pdf',
+                              filename = 'composer_normalised_data',
+                              title = "Normalised")),
           text = 'Download'
         ))
     ),

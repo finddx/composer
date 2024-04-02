@@ -258,9 +258,17 @@ f_style_comparison_table <- function(df_compare){
       dom = 'Bfrtip',
       scrollX = TRUE,
       buttons =
-        list('copy', list(
+        list("copy", list(
           extend = 'collection',
-          buttons = c('csv', 'excel', 'pdf'),
+          buttons = list(list(extend = 'csv',
+                              filename = 'composer_reweighting',
+                              title = "Reweighted"), # note: any spaces here result in weird output!
+                         list(extend = 'excel',
+                              filename = 'composer_reweighting',
+                              title = "Reweighted"),
+                         list(extend = 'pdf',
+                              filename = 'composer_reweighting',
+                              title = "Reweighted")),
           text = 'Download'
         ))
     )

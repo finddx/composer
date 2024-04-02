@@ -340,11 +340,20 @@ f_style_imputation_table <- function(df_display, df_highlight, highlight_backgro
     extensions = 'Buttons',
     options = list(
       dom = 'Bfrtip',
-      buttons = list('copy', list(
-        extend = 'collection',
-        buttons = c('csv', 'excel', 'pdf'),
-        text = 'Download'
-      )),
+      buttons =
+        list("copy", list(
+          extend = 'collection',
+          buttons = list(list(extend = 'csv',
+                              filename = 'composer_imputed_data',
+                              title = "Imputed"), # note: any spaces here result in weird output!
+                         list(extend = 'excel',
+                              filename = 'composer_imputed_data',
+                              title = "Imputed"),
+                         list(extend = 'pdf',
+                              filename = 'composer_imputed_data',
+                              title = "Imputed")),
+          text = 'Download'
+        )),
       columnDefs = list(
         list(
           visible=FALSE,

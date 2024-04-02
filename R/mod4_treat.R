@@ -330,9 +330,17 @@ f_style_treatment_table <- function(l, coin){
     options = list(
       dom = 'Bfrtip',
       buttons =
-        list('copy', list(
+        list("copy", list(
           extend = 'collection',
-          buttons = c('csv', 'excel', 'pdf'),
+          buttons = list(list(extend = 'csv',
+                              filename = 'composer_treated_data',
+                              title = "Treated"), # note: any spaces here result in weird output!
+                         list(extend = 'excel',
+                              filename = 'composer_treated_data',
+                              title = "Treated"),
+                         list(extend = 'pdf',
+                              filename = 'composer_treated_data',
+                              title = "Treated")),
           text = 'Download'
         )),
       columnDefs = list(

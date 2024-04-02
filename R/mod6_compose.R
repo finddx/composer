@@ -242,6 +242,7 @@ f_style_compose_table <- function(df_aggregated){
   colour_func <- grDevices::colorRampPalette(c("white", "aquamarine3"))
   colour_palette <- colour_func(length(breaks) + 1)
 
+
   # create formatted table ----
   DT::datatable(
     df_aggregated,
@@ -252,9 +253,17 @@ f_style_compose_table <- function(df_aggregated){
       scrollX = TRUE,
       pageLength = 20,
       buttons =
-        list('copy', list(
+        list("copy", list(
           extend = 'collection',
-          buttons = c('csv', 'excel', 'pdf'),
+          buttons = list(list(extend = 'csv',
+                              filename = 'composer_results',
+                              title = "Results"), # note: any spaces here result in weird output!
+                         list(extend = 'excel',
+                              filename = 'composer_results',
+                              title = "Results"),
+                         list(extend = 'pdf',
+                              filename = 'composer_results',
+                              title = "Results")),
           text = 'Download'
         ))
     )

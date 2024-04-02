@@ -307,9 +307,17 @@ f_style_stats_table <- function(l, table_caption = NULL, highlight_colour = "#ff
       dom = 'Bfrtip',
       scrollX = TRUE,
       buttons =
-        list('copy', list(
+        list("copy", list(
           extend = 'collection',
-          buttons = c('csv', 'excel', 'pdf'),
+          buttons = list(list(extend = 'csv',
+                              filename = 'composer_indicator_stats',
+                              title = "Stats"), # note: any spaces here result in weird output!
+                         list(extend = 'excel',
+                              filename = 'composer_indicator_stats',
+                              title = "Stats"),
+                         list(extend = 'pdf',
+                              filename = 'composer_indicator_stats',
+                              title = "Stats")),
           text = 'Download'
         )),
       columnDefs = list(

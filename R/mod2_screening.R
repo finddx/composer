@@ -265,9 +265,17 @@ f_style_screening_table <- function(coin) {
         list(targets = ncol(df_raw) - 1, visible = FALSE)
       ),
       buttons =
-        list('copy', list(
+        list("copy", list(
           extend = 'collection',
-          buttons = c('csv', 'excel', 'pdf'),
+          buttons = list(list(extend = 'csv',
+                              filename = 'composer_screened_data',
+                              title = "Screened"), # note: any spaces here result in weird output!
+                         list(extend = 'excel',
+                              filename = 'composer_screened_data',
+                              title = "Screened"),
+                         list(extend = 'pdf',
+                              filename = 'composer_screened_data',
+                              title = "Screened")),
           text = 'Download'
         ))
     )
