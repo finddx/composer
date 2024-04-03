@@ -349,6 +349,11 @@ validate_iData <- function(iData){
     return("Missing values found in 'uCode' column - please correct.")
   }
 
+  spaces <- grepl(" ", iData$uCode)
+  if(any(spaces)){
+    return("The uCode column contains entries with spaces - this is not allowed.")
+  }
+
   if(any(is.na(iData$uName))){
     return("Missing values found in 'uName' column - please correct.")
   }
