@@ -129,8 +129,7 @@ profiles_server <- function(id, r_share, coin) {
 
     r_unit_df <- reactive({
       req(r_share$results_calculated)
-      unit_results <- get_results(coin(), dset = "Aggregated", tab_type = "Aggs") |>
-        e_country_names(uCode, uName, type = "iso3c") |>
+      unit_results <- get_results(coin(), dset = "Aggregated", tab_type = "Aggs", also_get = "uName") |>
         dplyr::filter(.data$uCode == input$i_units)
     })
 
