@@ -22,7 +22,7 @@ Imports:
     tools,
     dplyr,
     glue,
-    COINr (>= 1.1.10),
+    COINr (>= 1.1.13),
     ggplot2,
     plotly,
     shiny,
