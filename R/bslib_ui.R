@@ -6,8 +6,22 @@ bslib_ui <- function(id = NULL){
 
   page_navbar(
     id = "navpanel_selected",
-    title = span(icon("music"), "composer"),
-    bg = "#0062cc",
+    #title = span(icon("music"), "composer"),
+    title = span(img(src = "www/find-logo.svg", height = 25, style = "margin:1px 1px"), "COMPOSER"),
+
+    theme = bs_theme(
+      preset = "shiny", # main theme
+      bg = "white",
+      fg = "#5e6f76", # "#306e7c"
+      primary = "#306e7c",
+      secondary = "#5b254e",
+      success = "#00a2ab",
+      info = "#7b97a0",
+      warning = "#F19576",
+      danger = "#e64148",
+      # font_scale = NULL
+    ),
+
     underline = TRUE,
 
     header = tagList(
