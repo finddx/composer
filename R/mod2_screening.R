@@ -62,7 +62,7 @@ screening_ui <- function(id, sidebar_width) {
         title = "Excluded units",
         value = textOutput(NS(id, "num_excluded")),
         textOutput(NS(id, "txt_excluded")),
-        theme = "text-info",
+        theme = "text-secondary",
         showcase = icon("xmark"), showcase_layout = "left center",
         full_screen = FALSE, fill = TRUE
       ),

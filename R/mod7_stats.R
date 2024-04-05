@@ -89,7 +89,8 @@ stats_server <- function(id, r_share, coin) {
     output$o_plot_violin <- plotly::renderPlotly({
       req(icode_selected())
       req(coin())
-      iCOINr::iplot_dist(coin(), dset = "Raw", iCode = icode_selected(), ptype = input$i_violinplot_type)
+      iCOINr::iplot_dist(coin(), dset = "Raw", iCode = icode_selected(),
+                         ptype = input$i_violinplot_type, colour = pal_find()[3])
     })
 
     # SCATTER PLOT
@@ -101,7 +102,8 @@ stats_server <- function(id, r_share, coin) {
         dsets = "Raw",
         iCodes = c(icode_selected(), input$i_scatterplot_yvar),
         Levels = 1,
-        log_axes = c(input$scat_logx, input$scat_logy)
+        log_axes = c(input$scat_logx, input$scat_logy),
+        marker_colour = pal_find()[5]
       )
     })
 

@@ -395,6 +395,7 @@ f_plot_scatter_treat <- function(l, coin, icol_selected, dset1){
     iCodes = icode_plot,
     dsets = c(dset1, "Treated"),
     Levels = 1,
-    axes_label = "iName+dset"
+    axes_label = "iName+dset",
+    marker_colour = pal_find()[5]
   )
 }

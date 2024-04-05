@@ -212,7 +212,8 @@ f_plot_scatter_norm <- function(coin, df_normalised, icol_selected, dset1){
     iCodes = icode_plot,
     dsets = c(dset1, "Normalised"),
     Levels = 1,
-    axes_label = "iName+dset"
+    axes_label = "iName+dset",
+    marker_colour = pal_find()[5]
   )
 }
 
