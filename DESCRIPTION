@@ -15,7 +15,7 @@ Depends:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
-    iCOINr (>= 0.2.10),
+    iCOINr (>= 0.2.11),
     readxl,
     rlang,
     stats,
