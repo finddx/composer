@@ -116,7 +116,7 @@ overview_server <-  function(id, r_share, coin) {
     # framework plot
     output$framework <- renderPlotly({
       req(coin())
-      iCOINr::iplot_framework(coin())
+      iCOINr::iplot_framework(coin(), plotly_colorway = pal_find())
     })
 
     # reset session
