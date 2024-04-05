@@ -16,7 +16,11 @@ bubble_ui <- function(id, sidebar_width) {
     mapping other indicators to the bubble size and colour.",
 
       # variables to plot
+      selectInput(ns("i_indicator_explore_bubble_dsetx"), "Dataset for x-axis",
+                  choices = list("Normalised scores" = "Aggregated", "Raw values" = "Raw")),
       selectInput(ns("i_indicator_explore_bubble_x"), "Indicator for x-axis", choices = NULL),
+      selectInput(ns("i_indicator_explore_bubble_dsety"), "Dataset for y-axis",
+                  choices = list("Normalised scores" = "Aggregated", "Raw values" = "Raw")),
       selectInput(ns("i_indicator_explore_bubble_y"), "Indicator for y-axis", choices = NULL),
       selectInput(ns("i_indicator_explore_bubble_size"), "Indicator for bubble size", choices = NULL),
       selectInput(ns("i_indicator_explore_bubble_iCode_group"), "Colour by group", choices = NULL),
@@ -72,14 +76,11 @@ bubble_server <- function(id, r_share, coin) {
       req(coin())
       req(r_share$results_calculated)
 
-      ind_group_choices <- get_indicator_codes(coin(), code_types = "all", with_levels = TRUE)
-
-      updateSelectInput(inputId = "i_indicator_explore_bubble_x", choices = ind_group_choices)
-      updateSelectInput(inputId = "i_indicator_explore_bubble_y", choices = ind_group_choices, selected = ind_group_choices[[2]])
+      ind_group_choices_all <- get_indicator_codes(coin(), code_types = "all", with_levels = TRUE)
 
       # POINT SIZE
       updateSelectInput(inputId = "i_indicator_explore_bubble_size",
-                        choices = c("-- Don't map to size --", ind_group_choices))
+                        choices = c("-- Don't map to size --", ind_group_choices_all))
 
       # POINT GROUPING (COLOUR)
       group_names <- f_get_group_list(coin())
@@ -100,6 +101,23 @@ bubble_server <- function(id, r_share, coin) {
     }) |>
       bindEvent(r_share$results_calculated)
 
+    # update indicator dropdowns
+    observe({
+
+      req(coin())
+      req(r_share$results_calculated)
+
+      code_types_x <- if(input$i_indicator_explore_bubble_dsetx == "Raw") "Indicator" else "all"
+      ind_group_choices_x <- get_indicator_codes(coin(), code_types = code_types_x, with_levels = TRUE)
+
+      code_types_y <- if(input$i_indicator_explore_bubble_dsety == "Raw") "Indicator" else "all"
+      ind_group_choices_y <- get_indicator_codes(coin(), code_types = code_types_y, with_levels = TRUE)
+
+      updateSelectInput(inputId = "i_indicator_explore_bubble_x", choices = ind_group_choices_x)
+      updateSelectInput(inputId = "i_indicator_explore_bubble_y", choices = ind_group_choices_y,
+                        selected = ind_group_choices_y[[2]])
+    })
+
     # disable/enable line boxes
     observeEvent(input$enable_lines, {
       if(input$enable_lines){
@@ -115,7 +133,7 @@ bubble_server <- function(id, r_share, coin) {
     observeEvent(input$i_indicator_explore_bubble_x,{
       if(input$i_indicator_explore_bubble_x != ""){
         dfres <- get_results(coin(), dset = "Aggregated", tab_type = "Full",
-                             dset_indicators = "Raw")
+                             dset_indicators = input$i_indicator_explore_bubble_dsetx)
         minx <- min(dfres[[input$i_indicator_explore_bubble_x]], na.rm = TRUE)
         maxx <- max(dfres[[input$i_indicator_explore_bubble_x]], na.rm = TRUE)
         updateNumericInput(inputId = "i_indicator_explore_threshold_x",
@@ -128,7 +146,7 @@ bubble_server <- function(id, r_share, coin) {
       # bubble thresholds - get correct scales
       if(input$i_indicator_explore_bubble_y != ""){
         dfres <- get_results(coin(), dset = "Aggregated", tab_type = "Full",
-                             dset_indicators = "Raw")
+                             dset_indicators = input$i_indicator_explore_bubble_dsety)
         miny <- min(dfres[[input$i_indicator_explore_bubble_y]], na.rm = TRUE)
         maxy <- max(dfres[[input$i_indicator_explore_bubble_y]], na.rm = TRUE)
         updateNumericInput(inputId = "i_indicator_explore_threshold_y",
@@ -179,6 +197,8 @@ bubble_server <- function(id, r_share, coin) {
         dset = "Aggregated",
         iCode_x = input$i_indicator_explore_bubble_x,
         iCode_y = input$i_indicator_explore_bubble_y,
+        dset_x = input$i_indicator_explore_bubble_dsetx,
+        dset_y = input$i_indicator_explore_bubble_dsety,
         iCode_size = iCode_size,
         threshold_x = input$i_indicator_explore_threshold_x,
         threshold_y = input$i_indicator_explore_threshold_y,
@@ -213,6 +233,8 @@ f_plot_bubble <- function(coin,
                           dset = "Aggregated",
                           iCode_x = NULL,
                           iCode_y = NULL,
+                          dset_x = NULL,
+                          dset_y = NULL,
                           iCode_size = NULL,
                           threshold_x = NULL,
                           threshold_y = NULL,
@@ -244,19 +266,45 @@ f_plot_bubble <- function(coin,
   colors <- c("#fdee65",  pal_find()[2], pal_find()[1])
 
   # get data: include selected group and raw data for indicators
-  bubble_df <- get_results(coin, dset = "Aggregated", tab_type = "Full",
-                           also_get = c(iCode_group, "uName"), dset_indicators = "Raw")
+  # bubble_df <- get_results(coin, dset = "Aggregated", tab_type = "Full",
+  #                          also_get = c(iCode_group, "uName"), dset_indicators = "Raw")
+
+  # separately collect x and y variables, rename so that merge works in case same variable twice
+  dfx <- get_data(coin, dset = dset_x, iCodes = iCode_x, also_get = c(iCode_group, "uName"))
+  colname_x <- paste0(iCode_x, "_", dset_x)
+  names(dfx)[names(dfx) == iCode_x] <- colname_x
+
+  # y variable data
+  dfy <- get_data(coin, dset = dset_y, iCodes = iCode_y, also_get = c(iCode_group, "uName"))
+  colname_y <- paste0(iCode_y, "_", dset_y)
+  names(dfy)[names(dfy) == iCode_y] <- colname_y
+
+  bubble_df <- if(colname_x != colname_y){
+    base::merge(dfx, dfy)
+  } else {
+    # in case we have same iCode and dset for both x and y
+    dfx
+  }
+
+  # bubble size data
+  if(!is.null(iCode_size)){
+    dfsize <- get_data(coin, dset = "Aggregated", iCodes = iCode_size)
+    bubble_df <- base::merge(bubble_df, dfsize)
+  }
 
   # remove NAs
-  bubble_df <- bubble_df[!is.na(bubble_df[[iCode_x]]), ]
-  bubble_df <- bubble_df[!is.na(bubble_df[[iCode_y]]), ]
+  bubble_df <- bubble_df[!is.na(bubble_df[[colname_x]]), ]
+  bubble_df <- bubble_df[!is.na(bubble_df[[colname_y]]), ]
+
+  # round
+  bubble_df <- COINr::signif_df(bubble_df, 4)
 
   # check for non positive for log
   if(axis_x == "log"){
-    if(any(bubble_df[[iCode_x]] <= 0)) axis_x <- "value"
+    if(any(bubble_df[[colname_x]] <= 0)) axis_x <- "value"
   }
   if(axis_y == "log"){
-    if(any(bubble_df[[iCode_y]] <= 0)) axis_y <- "value"
+    if(any(bubble_df[[colname_y]] <= 0)) axis_y <- "value"
   }
 
   validate(
@@ -295,9 +343,9 @@ f_plot_bubble <- function(coin,
 
   p <-
     bubble_df |>
-    e_charts_( {{ iCode_x }} ) |>
+    e_charts_( {{ colname_x }} ) |>
     e_scatter_(
-      {{ iCode_y }},
+      {{ colname_y }},
       scale = point_scaler,
       country_label = FALSE,
       emphasis = list(focus = "series", blurScope = "coordinateSystem"),
@@ -375,8 +423,8 @@ f_plot_bubble <- function(coin,
         marked_country_unit_i
       }) |>
       dplyr::transmute(
-        xAxis = !!rlang::ensym(iCode_x),
-        yAxis =  !!rlang::ensym(iCode_y),
+        xAxis = !!rlang::ensym(colname_x),
+        yAxis =  !!rlang::ensym(colname_y),
         value = uName,
         name = uCode
       ) |>
