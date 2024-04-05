@@ -1,5 +1,7 @@
 coinr_server <- function(input, output, session) {
 
+  #bs_themer()
+
   options(
     shiny.maxRequestSize=30*1024^2, # set max file upload size to 30 MB
     shiny.launch.browser = TRUE # launch browser by default
