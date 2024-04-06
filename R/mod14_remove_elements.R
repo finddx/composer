@@ -113,7 +113,9 @@ f_plot_bar_remove_elements <- function(l_remove, coin){
     text = hovertext,
     type = "bar",
     hoverinfo = "text",
-    textposition = "none"
+    textposition = "none",
+    marker = list(opacity = 0.8,
+                  color = pal_find()[1])
   ) |>
     plotly::layout(
       yaxis = list(title = "Mean absolute rank change")
