@@ -301,7 +301,7 @@ f_style_treatment_table <- function(l, coin){
     as.data.frame()
 
   # highlight colours different treatment types
-  highlight_colours <- c("white", "orange", "lightblue", "lightgreen")
+  highlight_colours <- c("white", "#F19576", "lightblue", "lightgreen")
 
   ## FOOTER SUMMARY ----
 
