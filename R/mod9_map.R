@@ -71,6 +71,7 @@ map_server <- function(id, r_share, coin) {
           type = "warning",
           duration = 10
         )
+        req(FALSE)
       }
     }) |> bindEvent(input$i_explore_map_submit_btn)
 
