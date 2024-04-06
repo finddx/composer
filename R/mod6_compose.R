@@ -239,7 +239,7 @@ f_style_compose_table <- function(df_aggregated){
 
   # generate colours ----
   breaks <- seq(min_all, max_all, length.out = 12)[2:11]
-  colour_func <- grDevices::colorRampPalette(c("white", "aquamarine3"))
+  colour_func <- grDevices::colorRampPalette(c("white", "#6dc3c8"))
   colour_palette <- colour_func(length(breaks) + 1)
 
 
