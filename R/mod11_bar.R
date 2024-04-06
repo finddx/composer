@@ -127,6 +127,8 @@ f_plot_bar <- function(coin, iCode, stack_children, make_vertical,
     stack_children = stack_children,
     ilabs = "iName",
     orientation = orientation,
-    plot_subset = plot_subset
+    plot_subset = plot_subset,
+    colour_pal = pal_find(),
+    opacity = 0.8
   )
 }
