@@ -4,7 +4,7 @@
 \alias{f_style_stats_table}
 \title{Styling for indicator stats table}
 \usage{
-f_style_stats_table(l, table_caption = NULL, highlight_colour = "#ffc266")
+f_style_stats_table(l, table_caption = NULL, highlight_colour = "#F19576")
 }
 \arguments{
 \item{l}{A list - the output of \code{\link[=f_stat_table]{f_stat_table()}}}
