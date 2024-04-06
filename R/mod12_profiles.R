@@ -171,7 +171,8 @@ profiles_server <- function(id, r_share, coin) {
         ulabs = ulabs,
         stack_children = input$i_stack_cp_bar,
         ilabs = "iName",
-        trunc_ulabs = trunc_ulabs
+        trunc_ulabs = trunc_ulabs,
+        colour_pal = pal_find()
       )
     }) |>
       bindEvent(input$i_countryprofile_submit_btn)
