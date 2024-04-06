@@ -101,7 +101,7 @@ bubble_server <- function(id, r_share, coin) {
     }) |>
       bindEvent(r_share$results_calculated)
 
-    # update indicator dropdowns
+    # update indicator dropdown for X
     observe({
 
       req(coin())
@@ -110,10 +110,18 @@ bubble_server <- function(id, r_share, coin) {
       code_types_x <- if(input$i_indicator_explore_bubble_dsetx == "Raw") "Indicator" else "all"
       ind_group_choices_x <- get_indicator_codes(coin(), code_types = code_types_x, with_levels = TRUE)
 
+      updateSelectInput(inputId = "i_indicator_explore_bubble_x", choices = ind_group_choices_x)
+
+    })
+
+    # update indicator dropdown for Y
+    observe({
+      req(coin())
+      req(r_share$results_calculated)
+
       code_types_y <- if(input$i_indicator_explore_bubble_dsety == "Raw") "Indicator" else "all"
       ind_group_choices_y <- get_indicator_codes(coin(), code_types = code_types_y, with_levels = TRUE)
 
-      updateSelectInput(inputId = "i_indicator_explore_bubble_x", choices = ind_group_choices_x)
       updateSelectInput(inputId = "i_indicator_explore_bubble_y", choices = ind_group_choices_y,
                         selected = ind_group_choices_y[[2]])
     })
@@ -178,10 +186,26 @@ bubble_server <- function(id, r_share, coin) {
 
       # point colour grouping
       enable_groups <- !(input$i_indicator_explore_bubble_iCode_group == "-- Don't group --")
-      iCode_group <- if(enable_groups){
-        input$i_indicator_explore_bubble_iCode_group
+
+      if(enable_groups){
+        iCode_group <- input$i_indicator_explore_bubble_iCode_group
+
+        # check number in group is not too high
+        n_in_group <- coin()$Meta$Unit[[input$i_indicator_explore_bubble_iCode_group]] |>
+          unique() |>
+          length()
+
+        # if too high, tell user and stop
+        if(n_in_group > 8){
+          showNotification(
+            ui = "Cannot plot chart: selected group variable has too many groups (> 8) for effective colour mapping.",
+            type = "warning",
+            duration = 10
+          )
+          req(FALSE)
+        }
       } else {
-        NULL
+        iCode_group <- NULL
       }
 
       # point size mapping
@@ -270,12 +294,12 @@ f_plot_bubble <- function(coin,
   #                          also_get = c(iCode_group, "uName"), dset_indicators = "Raw")
 
   # separately collect x and y variables, rename so that merge works in case same variable twice
-  dfx <- get_data(coin, dset = dset_x, iCodes = iCode_x, also_get = c(iCode_group, "uName"))
+  dfx <- COINr::get_data(coin, dset = dset_x, iCodes = iCode_x, also_get = c(iCode_group, "uName"))
   colname_x <- paste0(iCode_x, "_", dset_x)
   names(dfx)[names(dfx) == iCode_x] <- colname_x
 
   # y variable data
-  dfy <- get_data(coin, dset = dset_y, iCodes = iCode_y, also_get = c(iCode_group, "uName"))
+  dfy <- COINr::get_data(coin, dset = dset_y, iCodes = iCode_y, also_get = c(iCode_group, "uName"))
   colname_y <- paste0(iCode_y, "_", dset_y)
   names(dfy)[names(dfy) == iCode_y] <- colname_y
 
@@ -288,7 +312,7 @@ f_plot_bubble <- function(coin,
 
   # bubble size data
   if(!is.null(iCode_size)){
-    dfsize <- get_data(coin, dset = "Aggregated", iCodes = iCode_size)
+    dfsize <- COINr::get_data(coin, dset = "Aggregated", iCodes = iCode_size)
     bubble_df <- base::merge(bubble_df, dfsize)
   }
 
@@ -327,7 +351,10 @@ f_plot_bubble <- function(coin,
 
   # point size scaling function
   # min and max here are min/max point sizes
-  point_scaler <- function(x){COINr::n_minmax(x, l_u = c(3,40))}
+  # NOTE: at the moment not using this, using inbuilt function.
+  point_scaler <- function(x){
+    COINr::n_minmax(x, l_u = c(3,40))
+  }
 
   if(enable_groups){
     bubble_df <- dplyr::group_by(bubble_df, .data[[iCode_group]])
@@ -335,7 +362,7 @@ f_plot_bubble <- function(coin,
 
   if(enable_size){
     sizename <- COINr::icodes_to_inames(coin, iCode_size)
-    symbol_size <- 1
+    symbol_size <- 4
   } else {
     sizename <- NULL
     symbol_size <- 10
@@ -346,7 +373,7 @@ f_plot_bubble <- function(coin,
     e_charts_( {{ colname_x }} ) |>
     e_scatter_(
       {{ colname_y }},
-      scale = point_scaler,
+      #scale = point_scaler,
       country_label = FALSE,
       emphasis = list(focus = "series", blurScope = "coordinateSystem"),
       opacity = 0.4,
