@@ -358,8 +358,9 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="2.9" class="anchored" data-anchor-id="export-and-saving-session"><span class="header-section-number">2.9</span> Export and saving session</h2>
 <p>Options for saving the session and exporting the data are found in the “Save/export” dropdown in the top-right of the navbar.</p>
 <p>At any point in the app, you can save your session by clicking the “Bookmark” button. This uses Shiny’s bookmarking capability to save the state of the app, plus the uploaded data, to a bookmark directory. It then provides the user with a link to copy. To return to a previous session, you have to run <code>run_gui()</code> again (this establishes a Shiny session in your browser), then enter the link in the navigation bar. Of course, you have to be careful not to move or delete the <code>\shiny_bookmarks</code> folder that is created when you bookmark the app, otherwise the link will not work.</p>
-<p>Similarly, the results can be exported to Excel at any point (after successful data upload) by clicking the “Export to Excel” button. This writes the data, index structure and any results to a spreadhseet.</p>
-<p>Finally, if you wish to switch to R and use the COINr package, you can use the “Export to R” button to download the “coin” which has been created by the app, and subsequently use it with COINr in R.</p>
+<p>Similarly, the results can be exported to Excel at any point (after successful data upload) by clicking the “Export to Excel” button. This writes the data, index structure and any results to a spreadsheet.</p>
+<p>If you wish to switch to R and use the COINr package, you can use the “Export to R” button to download the “coin” which has been created by the app, and subsequently use it with COINr in R.</p>
+<p>You can also download an <code>.R</code> file which records the main commands used in building the composite indicator, for replication in R by clicking “Export to R script” in the same menu.</p>
 
 
 </section>
