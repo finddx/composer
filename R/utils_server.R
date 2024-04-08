@@ -505,3 +505,136 @@ df_int_2_numeric <- function(X){
   X
 
 }
+
+# Writes a replication script as a text file with main building commands
+write_replication_file <- function(coin, output_file = "COINr_script.R"){
+
+  fileConn <- file(output_file)
+
+  # Read data ---------------------------------------------------------------
+
+  str_out <- c(
+    "# This file is a replication script for a composite indicator generated",
+    "# in the {composer} app.",
+    "#",
+    "# You must supply the file path of your input spreadsheet here first.",
+    "input_file_path <- 'your_xlsx_file.xlsx'",
+    "",
+    "# Now run the following commands to replicate your composite indicator",
+    "",
+    "# Read data",
+    "library(readxl)",
+    paste0("iData <- read_excel(path = input_file_path, sheet = 'iData', na = c('', 'NA'))"),
+    paste0("iMeta <- read_excel(path = input_file_path, sheet = 'iMeta', na = c('', 'NA'))"),
+    ""
+  )
+
+  # Build coin --------------------------------------------------------------
+
+  str_out <- c(
+    str_out,
+    "# Build coin",
+    "library(COINr)",
+    "coin <- new_coin(iData = iData, iMeta = iMeta)",
+    ""
+  )
+
+  # Screening ---------------------------------------------------------------
+
+  toNULL <- function(x){
+    if(is.null(x)) {"NULL"} else x
+  }
+
+  if(!is.null(coin$Log$Screen)){
+    str_out <- c(
+      str_out,
+      "# Screen units",
+      paste0("coin <- Screen(coin, dset = '", coin$Log$Screen$dset, "', ",
+             "unit_screen = '", coin$Log$Screen$unit_screen, "', ",
+             "dat_thresh = ", toNULL(coin$Log$Screen$dat_thresh), ", ",
+             "nonzero_thresh = ", toNULL(coin$Log$Screen$nonzero_thresh), ", ",
+             "out2 = 'coin', ",
+             "write_to = 'Screened')"
+      ),
+      ""
+    )
+  }
+
+  # Imputation --------------------------------------------------------------
+
+  if(!is.null(coin$Log$Impute)){
+    str_out <- c(
+      str_out,
+      "# Impute missing data",
+      paste0("coin <- Impute(coin, dset = '", coin$Log$Impute$dset, "', ",
+             "f_i = '", coin$Log$Impute$f_i, "', ",
+             "use_group = ", toNULL(coin$Log$Impute$use_group), ", ",
+             "out2 = 'coin', ",
+             "write_to = 'Imputed')"
+      ),
+      ""
+    )
+  }
+
+  # Treatment ---------------------------------------------------------------
+
+  if(!is.null(coin$Log$Treat)){
+    str_out <- c(
+      str_out,
+      "# Treat outliers",
+      paste0("coin <- qTreat(coin, dset = '", coin$Log$Treat$dset, "', ",
+             "winmax = ", coin$Log$Treat$global_specs$f1_para$winmax, ", ",
+             "skew_thresh = ", coin$Log$Treat$global_specs$f1_para$skew_thresh, ", ",
+             "kurt_thresh = ", coin$Log$Treat$global_specs$f1_para$kurt_thresh, ", ",
+             "write_to = 'Treated')"
+      ),
+      ""
+    )
+  }
+
+  # Normalisation -----------------------------------------------------------
+
+  if(!is.null(coin$Log$qNormalise)){
+
+    l_type <- names(coin$Log$qNormalise$f_n_para)
+
+    l_n <- if(l_type == "l_u"){
+      paste0("list(l_u = c(", coin$Log$qNormalise$f_n_para$l_u[1], ", ", coin$Log$qNormalise$f_n_para$l_u[2],"))")
+    } else {
+      paste0("list(m_sd = c(", coin$Log$qNormalise$f_n_para$m_sd[1], ", ", coin$Log$qNormalise$f_n_para$m_sd[2],"))")
+    }
+
+    str_out <- c(
+      str_out,
+      "# Normalise indicators",
+      paste0("coin <- qNormalise(coin, dset = '", coin$Log$qNormalise$dset, "', ",
+             "f_n = '", coin$Log$qNormalise$f_n, "', ",
+             "f_n_para = ", l_n, ", ",
+             "write_to = 'Normalised')"
+      ),
+      ""
+    )
+  }
+
+  # Aggregate ---------------------------------------------------------------
+
+  if(!is.null(coin$Log$Aggregate)){
+    str_out <- c(
+      str_out,
+      "# Normalise indicators",
+      paste0("coin <- Aggregate(coin, dset = '", coin$Log$Aggregate$dset, "', ",
+             "f_ag = '", coin$Log$Aggregate$f_ag, "', ",
+             "w = '", coin$Log$Aggregate$w, "', ",
+             "dat_thresh = ", toNULL(coin$Log$Aggregate$dat_thresh), ", ",
+             "out2 = 'coin', ",
+             "write_to = 'Aggregated')"
+      ),
+      ""
+    )
+  }
+
+  # Write to file -----------------------------------------------------------
+
+  writeLines(str_out, fileConn)
+  close(fileConn)
+}

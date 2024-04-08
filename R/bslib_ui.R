@@ -146,6 +146,9 @@ bslib_ui <- function(id = NULL){
       ),
       nav_item(
         downloadButton("export_to_R", label = "Export to R")
+      ),
+      nav_item(
+        downloadButton("export_to_R_script", label = "Export to R Script")
       )
     ),
 

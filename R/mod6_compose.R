@@ -90,7 +90,8 @@ compose_server <- function(id, r_share, coin) {
           coin(),
           dset = "Normalised",
           aggregation_type = input$i_aggregation_type,
-          weight_set = input$i_weight_set
+          weight_set = input$i_weight_set,
+          min_dat_avail = input$i_min_data_availability
         )
         make_dset_toast("Aggregated")
 

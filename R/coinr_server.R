@@ -76,6 +76,17 @@ coinr_server <- function(input, output, session) {
     }
   )
 
+  # Export to R script
+  output$export_to_R_script <- downloadHandler(
+    filename = function() {
+      paste("composer_coin-script.R", sep = "")
+    },
+    content = function(con) {
+      req(coin())
+      write_replication_file(coin(), output_file = con)
+    }
+  )
+
   # Save session ------------------------------------------------------------
 
   # things NOT to include in bookmark
