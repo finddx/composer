@@ -55,3 +55,4 @@ Finally, click the "Run" button to generate the results. This will generate a su
 
 ![](figs/compose_3.png){width=100%}
 
+Keep in mind that it is up to you to interpret the results correctly: in some indexes, higher values may be "better", in others they may be "worse". This may be a good moment to look critically at the results and consider whether the index measures what it is you want to measure, and whether the directionality of each indicator, each dimension and the index itself is suitable. Moreover, you may wish to pass prelimary results to topical experts and stakeholders as a "reality check" - this may result in some feedback at this initial stage.

@@ -2,7 +2,7 @@
 
 In this chapter we walk through steps to build and analyse a composite indicator. More detailed documentation for each step, including explanation about the methodology, can be found in the following chapters.
 
-In general, users are expected to prepare their data and indicator framework before using the app. Once the data is successfully loaded into the app, the user proceeds through the tabs roughly from left to right.
+In general, users are expected to prepare their data and indicator framework before using the app. Once the data is successfully loaded into the app, the user proceeds through the tabs roughly from left to right, although most tabs are optional.
 
 ## Before you start
 
@@ -34,13 +34,13 @@ The app will attempt to spot any errors in your input data and give helpful erro
 
 Once the data is correctly formatted, upload your data to the app. If successful, the app will return a summary of the input data, as well as visual plot of the conceptual framework.
 
-![Example framework plot](figs/framework.png){width="50%"}
+![Example framework plot](figs/framework.png){width="80%"}
 
-The framework plot should reflect the expected index structure.
+The framework plot should reflect the expected index structure. The above figure is from our example data set which will be discussed in @sec-datainput.
 
 ## Data operations
 
-The data operations tab group contains a group of three possible operations to apply to your data set. All of these options are optional.
+The data operations tab group contains a group of three possible operations to apply to your data set. *All of these options are optional*.
 
 ![](figs/data_operation_tabs.png){width="20%"}
 
@@ -56,7 +56,7 @@ It is up to you which operations you apply. Usually it is a good idea to screen 
 
 ## Normalise
 
-After the optional data operations, the **normalisation** tab gives several options for normalising indicators, i.e. bringing them onto a common scale ready for aggregation. This step is mandatory to calculate index scores, because aggregating indicators on very different scales hardly ever makes any sense. Normalisation is explained in @sec-normalisation.
+After the optional data operations, the **normalisation** tab gives several options for normalising indicators, i.e. bringing them onto a common scale ready for aggregation. *This step is mandatory to calculate index scores*, because aggregating indicators on very different scales hardly ever makes any sense. Normalisation is explained in @sec-normalisation.
 
 ## Compose Index
 

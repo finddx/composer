@@ -287,6 +287,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Before explaining the specific requirements of the input spreadsheet, it is definitely worth downloading both the input template and the example input data, which are both available at the links in the “Data input” tab.</p>
 <p><img src="figs/data_input_1.png" class="img-fluid" style="width:50.0%"></p>
 <p>We recommend that you carefully read the instructions here, and compare to the example data set, which should give a good understanding of how to correctly format your input.</p>
+<p>The example data set is composite indicator developed by <a href="https://www.finddx.org/">FIND</a> (the organisation that developed the composer app) which is designed to prioritise resources for medical diagnosis of cervical cancer. However in the context of this documentation, it simply serves as an example data set to show the functioning of the app and the setup of the input files.</p>
 </section>
 <section id="idata-table" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="idata-table"><span class="header-section-number">4.2</span> iData table</h2>
@@ -298,7 +299,6 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>The figure above shows the first few rows and columns of the example data. Notice first of all that each <strong>row</strong> is a unit (countries here), and each <strong>column</strong> describes things about each unit, such as its code, name, and also its values for each indicator. Let’s now go through each column in turn - we divide into required and optional columns.</p>
-<p><em>In this example data ideally the iCodes should be shorter, also because they cause issues on the framework plot. Can we possibly shorten them? Also: you have a denominator column but currently the app doesn’t support denomination. For the purposes of the example, could we either remove it or make it into Type = “Other” in iMeta?</em></p>
 <section id="required-columns" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="required-columns"><span class="header-section-number">4.2.1</span> Required columns</h3>
 <p>The <strong>uCode</strong> column should contain a short alphanumeric code for each unit. For example, if units are countries it is advisable to use <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">ISO alpha-3 codes</a> (as in the example data). Otherwise, some requirements for these codes:</p>
@@ -348,11 +348,11 @@ ul.task-list li input[type="checkbox"] {
 <section id="successful" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="successful"><span class="header-section-number">4.4.1</span> Successful</h3>
 <p>If the data upload is successful, the app should output some information about your data to relay what it has understood. In the main window you should see a box with some text output summarising your input. This displays the number of units, indicators, groups, and details about the index structure. Check that this output is what you expect.</p>
-<p><img src="figs/data_input_5.png" class="img-fluid" style="width:40.0%"></p>
+<p><img src="figs/data_input_5.png" class="img-fluid" style="width:80.0%"></p>
 <p>Next to the text summary is a sunburst plot of the framework you have specified, which should look something like this:</p>
-<p><img src="figs/data_input_6.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="figs/data_input_6.png" class="img-fluid" style="width:80.0%"></p>
 <p>This is a plot of the index framework as specified in your iMeta table. Hovering over segments will show indicator names, and clicking on segments will zoom in on lower levels. Double click to reset the plot. Like most plots in the app, a snapshot of the plot can be downloaded as a png file by clicking the small camera icon in the upper right of the plot.</p>
-<p>The framework plot also shows the effective weight of each indicator and aggregate in the framework, as a result of the weights specified in iMeta <em>and</em> the index structure. Notice that in our example there are three equally-weighted dimensions: “readiness”, “strategic_fit” and “epidemiological_impact”, but these have different numbers of indicators within them. As a result, each indicator in “readiness” is weighted less individually than each in “epidemiological_impact”. This is important to consider in defining the index structure.</p>
+<p>The framework plot also shows the effective weight of each indicator and aggregate in the framework, as a result of the weights specified in iMeta <em>and</em> the index structure. Notice that in our example there are two equally-weighted dimensions: “Country readiness”, and “Epidemiological Impact”, but these have different numbers of indicators within them. As a result, each indicator in “Country readiness” is weighted less individually than each in “Epidemiological Impact”. This is important to consider in defining the index structure.</p>
 <p>On uploading the data there will also be a pop-up notification which reports whether your data has been recognised as country data or not. Data is recognised as country data if the uCodes correspond to ISO alpha-3 codes, as mentioned previously. This enables the maps later in the app. If you have made any mistakes with your ISO codes the app will try to point to them, or if no ISO codes are present it will assume you are not analysing country data and disable the mapping feature.</p>
 <p>From here, if you are happy with the details reported by the app, you can move to the next tab.</p>
 </section>

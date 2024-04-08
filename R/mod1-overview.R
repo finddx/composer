@@ -535,7 +535,7 @@ cross_validate <- function(iData, iMeta){
   icodes_agg <- iMeta$iCode[iMeta$Type == "Aggregate"]
   icodes_agg_nokids <- icodes_agg[icodes_agg %nin% iMeta$Parent]
   if(length(icodes_agg_nokids) > 0){
-    return(paste0("Aggregate iCode(s) found in iMeta that do not have any children (not named in 'Parent' column). Codes: ", icodes_agg_nokids))
+    return(paste0("Aggregate iCode(s) found in iMeta that do not have any children (not named in 'Parent' column). Codes: ", toString(icodes_agg_nokids)))
   }
 
   NULL

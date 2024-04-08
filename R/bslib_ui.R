@@ -155,8 +155,8 @@ bslib_ui <- function(id = NULL){
     ),
 
     footer = p(
-      "Developed by the ",
-      tags$a(href="https://www.finddx.org/", "Foundation for Innovative New Diagnostics"),
+      "Developed by ",
+      tags$a(href="https://www.finddx.org/", "FIND"),
       " by ",
       tags$a(href="https://www.willbecker.me/", "William Becker"),
       " Anna Mantsoki and Ben Ubah.",

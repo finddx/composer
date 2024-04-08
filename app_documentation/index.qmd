@@ -29,7 +29,7 @@ The rest of this page gives some general information about the app and composite
 
 ## Composite indicators
 
-Indicators are used in many contexts to measure complex multidimensional concepts, typically with the aim of prioritising resources and interventions, and also to track progress. In the international/policy context, indicators are often used to compare countries and/or sub-national regions. *Maybe add some specific examples here*
+Indicators are used in many contexts to measure complex multidimensional concepts, typically with the aim of prioritising resources and interventions, and also to track progress. In the international/policy context, indicators are often used to compare countries and/or sub-national regions. Examples include the [Human Development Index](https://hdr.undp.org/data-center/human-development-index#/indicies/HDI), the [Global Innovation Index](https://www.wipo.int/global_innovation_index/en/), and many others.
 
 Quite often, the concept to be measured cannot be sufficiently captured with one indicator, and a group of indicators is needed. As the number of indicators gets larger, it becomes increasingly difficult to compare and prioritise.
 
@@ -56,7 +56,7 @@ The {composer} app includes the following features:
 
 ## Methodology
 
-The composite indicator methodology used in this app follows the internationally-recognised [OECD/JRC Handbook of Composite Indicators](https://publications.jrc.ec.europa.eu/repository/handle/JRC47008), and the methodology used by the [European Commission](https://knowledge4policy.ec.europa.eu/composite-indicators_en).
+The composite indicator methodology used in this app follows the internationally-recognised [OECD/JRC Handbook of Composite Indicators](https://publications.jrc.ec.europa.eu/repository/handle/JRC47008), and the methodology used by the [European Commission](https://knowledge4policy.ec.europa.eu/composite-indicators_en). If you wish to learn more about building and analysing composite indicators, see for example the recent [training course](https://knowledge4policy.ec.europa.eu/composite-indicators/2023-jrc-week-composite-indicators-scoreboards_en#download) given by the European Commission, including videos and slides.
 
 Most of the data processing in the app is done using the [COINr package](https://bluefoxr.github.io/COINr/), which is an R package for building and analysing composite indicators. R users may wish to additionally work with COINr directly to access functionalities not included in the app.
 

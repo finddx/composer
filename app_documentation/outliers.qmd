@@ -109,7 +109,7 @@ On running the treatment, the app will return a summary of which indicators had 
 
 A table of data is also generated which highlights points that have been Winsorised or log-transformed, and summarises the data treatment applied to each indicator.
 
-![](figs/treat_2.png){width=60%}
+![](figs/treat_2.png){width=100%}
 
 Clicking on a column in the table will generate a scatter plot in the sidebar, showing the indicator before and after treatment, and illustrating how the data points have been changed. In the example below, four points have been Winsorised.
 

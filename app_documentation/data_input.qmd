@@ -12,6 +12,8 @@ Before explaining the specific requirements of the input spreadsheet, it is defi
 
 We recommend that you carefully read the instructions here, and compare to the example data set, which should give a good understanding of how to correctly format your input.
 
+The example data set is composite indicator developed by [FIND](https://www.finddx.org/) (the organisation that developed the composer app) which is designed to prioritise resources for medical diagnosis of cervical cancer. However in the context of this documentation, it simply serves as an example data set to show the functioning of the app and the setup of the input files.
+
 ## iData table
 
 The first of the two tables to input into the app is called "iData", which is short for "indicator data". This table is unsurprisingly where you enter the data for your indicators, but also the codes and names of each indicator.
@@ -19,8 +21,6 @@ The first of the two tables to input into the app is called "iData", which is sh
 ![Extract of iData example table](figs/data_input_2.png){width=100%}
 
 The figure above shows the first few rows and columns of the example data. Notice first of all that each **row** is a unit (countries here), and each **column** describes things about each unit, such as its code, name, and also its values for each indicator. Let's now go through each column in turn - we divide into required and optional columns.
-
-*In this example data ideally the iCodes should be shorter, also because they cause issues on the framework plot. Can we possibly shorten them? Also: you have a denominator column but currently the app doesn't support denomination. For the purposes of the example, could we either remove it or make it into Type = "Other" in iMeta?*
 
 ### Required columns
 
@@ -84,15 +84,15 @@ At this point, either the data upload will be successful or not. Here's what to 
 
 If the data upload is successful, the app should output some information about your data to relay what it has understood. In the main window you should see a box with some text output summarising your input. This displays the number of units, indicators, groups, and details about the index structure. Check that this output is what you expect.
 
-![](figs/data_input_5.png){width=40%}
+![](figs/data_input_5.png){width=80%}
 
 Next to the text summary is a sunburst plot of the framework you have specified, which should look something like this:
 
-![](figs/data_input_6.png){width=60%}
+![](figs/data_input_6.png){width=80%}
 
 This is a plot of the index framework as specified in your iMeta table. Hovering over segments will show indicator names, and clicking on segments will zoom in on lower levels. Double click to reset the plot. Like most plots in the app, a snapshot of the plot can be downloaded as a png file by clicking the small camera icon in the upper right of the plot.
 
-The framework plot also shows the effective weight of each indicator and aggregate in the framework, as a result of the weights specified in iMeta *and* the index structure. Notice that in our example there are three equally-weighted dimensions: "readiness", "strategic_fit" and "epidemiological_impact", but these have different numbers of indicators within them. As a result, each indicator in "readiness" is weighted less individually than each in "epidemiological_impact". This is important to consider in defining the index structure.
+The framework plot also shows the effective weight of each indicator and aggregate in the framework, as a result of the weights specified in iMeta *and* the index structure. Notice that in our example there are two equally-weighted dimensions: "Country readiness", and "Epidemiological Impact", but these have different numbers of indicators within them. As a result, each indicator in "Country readiness" is weighted less individually than each in "Epidemiological Impact". This is important to consider in defining the index structure.
 
 On uploading the data there will also be a pop-up notification which reports whether your data has been recognised as country data or not. Data is recognised as country data if the uCodes correspond to ISO alpha-3 codes, as mentioned previously. This enables the maps later in the app. If you have made any mistakes with your ISO codes the app will try to point to them, or if no ISO codes are present it will assume you are not analysing country data and disable the mapping feature.
 

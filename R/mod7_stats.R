@@ -267,7 +267,7 @@ f_filter_stat_table <-  function(l_stat_table){
 #' @param highlight_colour Colour to highlight flagged cells
 #'
 #' @return DT table
-f_style_stats_table <- function(l, table_caption = NULL, highlight_colour = "#F19576"){
+f_style_stats_table <- function(l, table_caption = NULL, highlight_colour = "#f6bdb4"){
 
   df_display <- l$FlaggedStats
   df_highlight <- l$Flags
