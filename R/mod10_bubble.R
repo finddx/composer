@@ -349,13 +349,6 @@ f_plot_bubble <- function(coin,
   # echarts4r doesn't seem to.
   .data <- NULL
 
-  # point size scaling function
-  # min and max here are min/max point sizes
-  # NOTE: at the moment not using this, using inbuilt function.
-  point_scaler <- function(x){
-    COINr::n_minmax(x, l_u = c(3,40))
-  }
-
   if(enable_groups){
     bubble_df <- dplyr::group_by(bubble_df, .data[[iCode_group]])
   }
@@ -363,9 +356,21 @@ f_plot_bubble <- function(coin,
   if(enable_size){
     sizename <- COINr::icodes_to_inames(coin, iCode_size)
     symbol_size <- 4
+    min_size <- min(bubble_df[[iCode_size]], na.rm = TRUE)
+    max_size <- max(bubble_df[[iCode_size]], na.rm = TRUE)
   } else {
     sizename <- NULL
     symbol_size <- 10
+  }
+
+  # point size scaling function
+  # min and max here are min/max point sizes
+  # NOTE: this requires passing in the global min and max for the size vector
+  # because echarts passes data one group at a time.
+  min_bubble_size <- 1
+  max_bubble_size <- 50
+  point_scaler <- function(x){
+    (x-min_size)/(max_size - min_size)*(max_bubble_size - min_bubble_size) + min_bubble_size
   }
 
   p <-
@@ -373,7 +378,7 @@ f_plot_bubble <- function(coin,
     e_charts_( {{ colname_x }} ) |>
     e_scatter_(
       {{ colname_y }},
-      #scale = point_scaler,
+      scale = point_scaler,
       country_label = FALSE,
       emphasis = list(focus = "series", blurScope = "coordinateSystem"),
       opacity = 0.4,
