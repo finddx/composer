@@ -189,14 +189,14 @@ profiles_server <- function(id, r_share, coin) {
     # STRENGTHS TABLE
     output$o_table_country_strengths <- DT::renderDataTable({
       req(r_share$results_calculated)
-      COINr::get_str_weak(coin(), dset = "Aggregated", usel = input$i_units)$Strengths
+      COINr::get_str_weak(coin(), dset = "Raw", usel = input$i_units)$Strengths
     }, rownames = FALSE, options = list(dom = 't')) |>
       bindEvent(input$i_countryprofile_submit_btn)
 
     # WEAKNESSES TABLE
     output$o_table_country_weaknesses <- DT::renderDataTable({
       req(r_share$results_calculated)
-      COINr::get_str_weak(coin(), dset = "Aggregated", usel = input$i_units)$Weaknesses
+      COINr::get_str_weak(coin(), dset = "Raw", usel = input$i_units)$Weaknesses
     }, rownames = FALSE, options = list(dom = 't')) |>
       bindEvent(input$i_countryprofile_submit_btn)
 

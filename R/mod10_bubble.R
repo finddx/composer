@@ -279,8 +279,9 @@ f_plot_bubble <- function(coin,
     # check groups in coin
     iCodes_groups <- f_get_group_codes(coin)
 
-    if(is.null(iCodes_groups)){
+    if(length(iCodes_groups) == 0){
       enable_groups <- FALSE # cannot group, no groups
+      iCode_group <- NULL
     } else {
       stopifnot(iCode_group %in% iCodes_groups)
     }
