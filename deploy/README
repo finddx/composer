@@ -1,0 +1,4 @@
+docker build -f Dockerfile_base --progress=plain -t composer_base .
+docker build -f Dockerfile --progress=plain -t composer:latest .
+docker run -p 3838:3838 shinyexample:latest
+# then go to 127.0.0.1:3838

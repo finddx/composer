@@ -2,39 +2,42 @@ Package: composer
 Title: An app for building and analysing composite indicators
 Version: 0.1
 Authors@R: c(
-    person("William", "Becker", email = "william.becker@bluefoxdata.eu", role = c("aut", "cre"),
+    person("William", "Becker", , "william.becker@bluefoxdata.eu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6467-4472")),
-    person("Ben", "Ubah", email = "ubah.ben22@gmail.com", role = c("aut")),
-    person("Anna", "Mantsoki", email = "anna.mantsoki@finddx.org", role = c("aut"))
-           )
-Description: A Shiny app which allows users to build their own composite indicators by entering their data.
+    person("Ben", "Ubah", , "ubah.ben22@gmail.com", role = "aut"),
+    person("Anna", "Mantsoki", , "anna.mantsoki@finddx.org", role = "aut")
+  )
+Description: A Shiny app which allows users to build their own composite
+    indicators by entering their data.
 License: MIT + file LICENSE
-Encoding: UTF-8
 Depends:
     R (>= 4.1.0)
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
 Imports: 
-    iCOINr (>= 0.2.11),
-    readxl,
-    rlang,
-    stats,
-    tools,
-    dplyr,
-    glue,
+    bslib,
     COINr (>= 1.1.13),
-    ggplot2,
-    plotly,
-    shiny,
-    shinyjs,
-    echarts4r,
+    config,
+    dplyr,
     DT,
+    echarts4r,
+    ggplot2,
+    glue,
+    grDevices,
     htmltools,
     htmlwidgets,
+    iCOINr (>= 0.2.11),
+    plotly,
+    readxl,
+    rlang,
     rmarkdown,
-    grDevices,
-    bslib
+    shiny,
+    shinyjs,
+    stats,
+    tools,
+    utils
 Remotes: 
     bluefoxr/COINr,
     bluefoxr/iCOINr
+Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
